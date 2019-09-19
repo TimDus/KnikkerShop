@@ -5,7 +5,6 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcoreapp2.2\KnikkerShop.pdb
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcoreapp2.2\KnikkerShop.Views.dll
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcoreapp2.2\KnikkerShop.Views.pdb
-D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csprojAssemblyReference.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csproj.CoreCompileInputs.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.RazorAssemblyInfo.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.RazorAssemblyInfo.cs
