@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class Beheerder : BaseAccount
+    public class Beheerder : Account
     {
         int BeheerderId { get; set; }
     }

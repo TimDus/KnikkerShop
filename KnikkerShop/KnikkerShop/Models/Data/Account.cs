@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class BaseAccount
+    public class Account
     {
-        public BaseAccount()
+        public Account()
         { }
 
-        public BaseAccount(int id, string username, string email)
+        public Account(int id, string username, string email)
         {
             this.Id = id;
             this.Naam = username;
@@ -20,7 +20,7 @@ namespace KnikkerShop.Models.Data
             NormalizedEmail = email.ToUpper();
         }
 
-        public BaseAccount(int id, string username, string email, string password)
+        public Account(int id, string username, string email, string password)
         {
             this.Id = id;
             this.Naam = username;
@@ -31,7 +31,7 @@ namespace KnikkerShop.Models.Data
             NormalizedEmail = email.ToUpper();
         }
 
-        public BaseAccount(string username, string email)
+        public Account(string username, string email)
         {
             this.Naam = username;
             this.Email = email;

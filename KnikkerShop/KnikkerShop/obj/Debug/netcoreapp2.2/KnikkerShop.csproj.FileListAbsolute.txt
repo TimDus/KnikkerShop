@@ -14,7 +14,6 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.TagHelpers.output.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.RazorCoreGenerate.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
-D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
@@ -27,3 +26,7 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.dll
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.pdb
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csproj.CopyComplete
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Home\Logout.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Login\Index.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csprojAssemblyReference.cache
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Login\Registreer.g.cshtml.cs
