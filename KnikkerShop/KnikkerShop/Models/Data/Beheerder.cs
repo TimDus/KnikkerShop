@@ -7,6 +7,6 @@ namespace KnikkerShop.Models.Data
 {
     public class Beheerder : Account
     {
-        int BeheerderId { get; set; }
+        bool IsHelper { get; set; }
     }
 }

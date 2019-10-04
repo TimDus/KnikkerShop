@@ -7,7 +7,9 @@
 
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
@@ -16,9 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Context\MemoryContext\" />
-    <Folder Include="Context\IContext\" />
-    <Folder Include="Converters\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Views\Winkel\" />
   </ItemGroup>
 
 </Project>

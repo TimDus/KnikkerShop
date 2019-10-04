@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class Account
+    public class Account : Entity
     {
         public Account()
         { }
@@ -13,35 +13,34 @@ namespace KnikkerShop.Models.Data
         public Account(int id, string username, string email)
         {
             this.Id = id;
-            this.Naam = username;
+            this.UserName = username;
             this.Email = email;
 
-            NormalizedNaam = Naam.ToUpper();
+            NormalizedUserName = UserName.ToUpper();
             NormalizedEmail = email.ToUpper();
         }
 
         public Account(int id, string username, string email, string password)
         {
             this.Id = id;
-            this.Naam = username;
+            this.UserName = username;
             this.Email = email;
             this.Password = password;
 
-            NormalizedNaam = Naam.ToUpper();
+            NormalizedUserName = UserName.ToUpper();
             NormalizedEmail = email.ToUpper();
         }
 
         public Account(string username, string email)
         {
-            this.Naam = username;
+            this.UserName = username;
             this.Email = email;
         }
 
-        public long Id { get; set; }
-        public string Naam { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public string NormalizedNaam { get; set; }
+        public string NormalizedUserName { get; set; }
         public string NormalizedEmail { get; set; }
     }
 }

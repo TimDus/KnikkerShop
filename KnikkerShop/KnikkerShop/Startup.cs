@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KnikkerShop.Context.Authentication;
+using KnikkerShop.Context.IContext;
+using KnikkerShop.Context.MSSQLContext;
 using KnikkerShop.Models.Data;
+using KnikkerShop.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +36,11 @@ namespace KnikkerShop
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            // Sql contexts
+            services.AddScoped<IProductContext, MSSQLProductContext>();
+
+            // Repositories
+            services.AddScoped<ProductRepository>();
 
             //Useraccounts and roles
             services.AddTransient<IUserStore<Account>, MSSQLUserContext>();

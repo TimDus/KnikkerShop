@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Context.Authentication
 {
-    public class MSSQLUserContext : IUserPasswordStore<Account>, IUserEmailStore<Account>, IUserRoleStore<Account>
+    public class MSSQLUserContext : IUserStore<Account>, IUserPasswordStore<Account>, IUserEmailStore<Account>, IUserRoleStore<Account>
     {
         private readonly string _connectionString;
-        public MSSQLUserContext(IConfiguration config)
+        public MSSQLUserContext(IConfiguration configuration)
         {
-            _connectionString = config.GetConnectionString("Development");
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
 
@@ -36,11 +36,11 @@ namespace KnikkerShop.Context.Authentication
                 using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Account](naam, Password, Email) VALUES (@naam, @password, @email)", connection);
-                    sqlCommand.Parameters.AddWithValue("@naam", user.Naam);
-                    sqlCommand.Parameters.AddWithValue("@password", user.Password);
+                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Account](username, email, password) OUTPUT INSERTED.ID VALUES (@username,@email,@password)", connection);
+                    sqlCommand.Parameters.AddWithValue("@username", user.UserName);
                     sqlCommand.Parameters.AddWithValue("@email", user.Email);
-                    sqlCommand.ExecuteScalar();
+                    sqlCommand.Parameters.AddWithValue("@password", user.Password);
+                    user.Id = Convert.ToInt32(sqlCommand.ExecuteScalar());
                     return Task.FromResult<IdentityResult>(IdentityResult.Success);
                 }
             }
@@ -82,14 +82,14 @@ namespace KnikkerShop.Context.Authentication
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT id, naam, email FROM [Account] WHERE email=@email", connection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT id, username, email FROM [Account] WHERE email=@email", connection);
                 sqlCommand.Parameters.AddWithValue("@email", normalizedEmail);
                 using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                 {
                     Account user = default(Account);
                     if (sqlDataReader.Read())
                     {
-                        user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["naam"].ToString(), sqlDataReader["email"].ToString());
+                        user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
 
                     }
                     return Task.FromResult(user);
@@ -113,14 +113,14 @@ namespace KnikkerShop.Context.Authentication
                 using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT id, naam, email FROM [Account] WHERE id=@id", connection);
+                    SqlCommand sqlCommand = new SqlCommand("SELECT id, username, email FROM [Account] WHERE id=@id", connection);
                     sqlCommand.Parameters.AddWithValue("@id", userId);
                     using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {
                         Account user = default(Account);
                         if (sqlDataReader.Read())
                         {
-                            user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["naam"].ToString(), sqlDataReader["email"].ToString());
+                            user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
 
                         }
                         return Task.FromResult(user);
@@ -134,7 +134,7 @@ namespace KnikkerShop.Context.Authentication
             }
         }
 
-        public Task<Account> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public Task<Account> FindByNameAsync(string normalizedAccountName, CancellationToken cancellationToken)
         {
             try
             {
@@ -143,14 +143,14 @@ namespace KnikkerShop.Context.Authentication
                 using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT id, naam, password, email FROM [Account] WHERE email=@email", connection);
-                    sqlCommand.Parameters.AddWithValue("@email", normalizedUserName);
+                    SqlCommand sqlCommand = new SqlCommand("SELECT id, username, email, password FROM [Account] WHERE email=@email", connection);
+                    sqlCommand.Parameters.AddWithValue("@email", normalizedAccountName);
                     using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {
                         Account user = default(Account);
                         if (sqlDataReader.Read())
                         {
-                            user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["naam"].ToString(), sqlDataReader["email"].ToString(), sqlDataReader["password"].ToString());
+                            user = new Account(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString(), sqlDataReader["password"].ToString());
                         }
                         return Task.FromResult(user);
                     }
@@ -180,7 +180,7 @@ namespace KnikkerShop.Context.Authentication
 
         public Task<string> GetNormalizedUserNameAsync(Account user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.NormalizedNaam);
+            return Task.FromResult(user.NormalizedUserName);
         }
 
         public Task<string> GetPasswordHashAsync(Account user, CancellationToken cancellationToken)
@@ -227,10 +227,10 @@ namespace KnikkerShop.Context.Authentication
 
         public Task<string> GetUserNameAsync(Account user, CancellationToken cancellationToken)
         {
-            return Task.FromResult(user.Naam);
+            return Task.FromResult(user.UserName);
         }
 
-        public Task<IList<Account>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        public Task<IList<Account>> GetAccountsInRoleAsync(string roleName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -251,15 +251,15 @@ namespace KnikkerShop.Context.Authentication
                 {
                     connection.Open();
 
-                    SqlCommand sqlCommand = new SqlCommand("SELECT [id] FROM [Role] WHERE [naam] = @normalizedNaam", connection);
-                    sqlCommand.Parameters.AddWithValue("@normalizedNaam", roleName.ToUpper());
+                    SqlCommand sqlCommand = new SqlCommand("SELECT [id] FROM [Role] WHERE [name] = @normalizedName", connection);
+                    sqlCommand.Parameters.AddWithValue("@normalizedName", roleName.ToUpper());
                     int? roleId = sqlCommand.ExecuteScalar() as int?;
 
-                    SqlCommand sqlCommandUserRole = new SqlCommand("SELECT COUNT(*) FROM [UserRole] WHERE [userId] = @userId AND [roleId] =@roleId", connection);
-                    sqlCommandUserRole.Parameters.AddWithValue("@userId", user.Id);
-                    sqlCommandUserRole.Parameters.AddWithValue("@roleId", roleId);
+                    SqlCommand sqlCommandAccountRole = new SqlCommand("SELECT COUNT(*) FROM [AccountRole] WHERE [userId] = @userId AND [roleId] =@roleId", connection);
+                    sqlCommandAccountRole.Parameters.AddWithValue("@userId", user.Id);
+                    sqlCommandAccountRole.Parameters.AddWithValue("@roleId", roleId);
 
-                    int? roleCount = sqlCommandUserRole.ExecuteScalar() as int?;
+                    int? roleCount = sqlCommandAccountRole.ExecuteScalar() as int?;
 
                     return Task.FromResult(roleCount > 0);
 
@@ -301,9 +301,9 @@ namespace KnikkerShop.Context.Authentication
             return Task.FromResult(0);
         }
 
-        public Task SetNormalizedUserNameAsync(Account user, string normalizedName, CancellationToken cancellationToken)
+        public Task SetNormalizedAccountNameAsync(Account user, string normalizedName, CancellationToken cancellationToken)
         {
-            user.NormalizedNaam = normalizedName;
+            user.NormalizedUserName = normalizedName;
             return Task.FromResult(0);
         }
 
@@ -313,9 +313,9 @@ namespace KnikkerShop.Context.Authentication
             return Task.FromResult(0);
         }
 
-        public Task SetUserNameAsync(Account user, string userName, CancellationToken cancellationToken)
+        public Task SetAccountNameAsync(Account user, string userName, CancellationToken cancellationToken)
         {
-            user.Naam = userName;
+            user.UserName = userName;
             return Task.FromResult(0);
         }
         /// <summary>
@@ -325,6 +325,21 @@ namespace KnikkerShop.Context.Authentication
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<IdentityResult> UpdateAsync(Account user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Account>> GetUsersInRoleAsync(string roleName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetUserNameAsync(Account user, string userName, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetNormalizedUserNameAsync(Account user, string normalizedName, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

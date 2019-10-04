@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace KnikkerShop.Interfaces
+{
+    public interface IGenericQueries<T>
+    {
+        List<T> GetAll();
+        T GetById(long id);
+
+        bool Insert(T obj);
+        bool Update(T obj);
+        bool Activation(int id);
+    }
+}

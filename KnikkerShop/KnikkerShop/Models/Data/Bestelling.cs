@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class Bestelling
+    public class Bestelling : Entity
     {
         int KlantId { get; set; }
         int ProductId { get; set; }

@@ -29,7 +29,7 @@ namespace KnikkerShop.Context.Authentication
 
         public void Dispose()
         {
-            //nothing to do.
+
         }
 
         public Task<Role> FindByIdAsync(string roleId, CancellationToken cancellationToken)
