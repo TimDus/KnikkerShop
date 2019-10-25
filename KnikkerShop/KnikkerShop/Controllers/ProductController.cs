@@ -16,22 +16,29 @@ namespace KnikkerShop.Controllers
     {
         // Repos
         private readonly ProductRepository productRepository;
+        private readonly CategorieRepository categorieRepository;
 
         // Converter
-        private readonly ProductViewModelConverter converter = new ProductViewModelConverter();
+        private readonly ProductViewModelConverter productConverter = new ProductViewModelConverter();
+        private readonly CategorieViewModelConverter categorieConverter = new CategorieViewModelConverter();
 
         public ProductController
             (
-                ProductRepository productRepository
+                ProductRepository productRepository,
+                CategorieRepository categorieRepository
             )
         {
             this.productRepository = productRepository;
+            this.categorieRepository = categorieRepository;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
             ProductViewModel vm = new ProductViewModel();
+            List<Product> products = new List<Product>();
+            products = productRepository.GetAll();
+            vm.Products = productConverter.ModelsToViewModels(products);
 
             return View(vm);
         }
@@ -39,36 +46,63 @@ namespace KnikkerShop.Controllers
         [HttpGet]
         public IActionResult Creëer()
         {
-            return View();
+            ProductDetailViewModel vm = new ProductDetailViewModel
+            {
+                CategorieList = categorieConverter.ModelsToViewModels(categorieRepository.GetAll())
+            };
+            return View(vm);
         }
 
         [HttpGet]
-        public IActionResult Aanpassen()
+        public IActionResult Aanpassen(long id)
         {
-            return View();
+            ProductDetailViewModel vm = new ProductDetailViewModel();
+            Product product = productRepository.GetById(id);
+            vm = productConverter.ModelToViewModel(product);
+            vm.CategorieList = categorieConverter.ModelsToViewModels(categorieRepository.GetAll());
+            return View(vm);
         }
 
         [HttpGet]
-        public IActionResult Info()
+        public IActionResult Detail(long id)
         {
-            return View();
+            ProductDetailViewModel vm = new ProductDetailViewModel();
+            Product product = productRepository.GetById(id);
+            vm = productConverter.ModelToViewModel(product);
+            return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Activeren(long id)
+        {
+            ProductDetailViewModel vm = new ProductDetailViewModel();
+            Product product = productRepository.GetById(id);
+            vm = productConverter.ModelToViewModel(product);
+            return View(vm);
         }
 
         [HttpPost]
-        [Authorize(Roles = "beheerder")]
-        public IActionResult Create(ProductDetailViewModel vm)
+        public IActionResult Creëer(ProductDetailViewModel vm)
         {
             // Check if model is valid
             if (ModelState.IsValid)
             {
-                Product product = converter.ViewModelToModel(vm);
-                bool created = productRepository.Insert(product);
-                return RedirectToAction("Index");
+                Product product = productConverter.ViewModelToModel(vm);
+                long Id = productRepository.Insert(product);
+                return RedirectToAction("Aanpassen", new { Id });
             }
             else
             {
-                return View(vm);
+                return RedirectToAction("Index");
             }
+        }
+
+        [HttpPost]
+        public IActionResult Aanpassen(ProductDetailViewModel vm)
+        {
+            Product product = productConverter.ViewModelToModel(vm);
+            bool result = productRepository.Update(product);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -10,6 +10,31 @@ namespace KnikkerShop.Converters
 {
     public class ProductViewModelConverter : IViewModelConverter<Product, ProductDetailViewModel>
     {
+        public List<ProductDetailViewModel> ModelsToViewModels(List<Product> models)
+        {
+            List<ProductDetailViewModel> productDetailViewModels = new List<ProductDetailViewModel>();
+
+            foreach (Product p in models)
+            {
+                ProductDetailViewModel vm = new ProductDetailViewModel()
+                {
+                    Id = p.Id,
+                    Voorraad = p.Voorraad,
+                    CategorieId = p.CategorieId,
+                    Prijs = p.Prijs,
+                    Naam = p.Naam,
+                    Kleur = p.Kleur,
+                    Grootte = p.Grootte,
+                    Beschrijving = p.Beschrijving,
+                    Categorie = p.Categorie,
+                    Actief = p.Actief,
+                };
+                productDetailViewModels.Add(vm);
+            }
+
+            return productDetailViewModels;
+        }
+
         public ProductDetailViewModel ModelToViewModel(Product model)
         {
             return new ProductDetailViewModel
@@ -22,8 +47,14 @@ namespace KnikkerShop.Converters
                 Beschrijving = model.Beschrijving,
                 Plaatje = model.Plaatje,
                 Voorraad = model.Voorraad,
-                CategorieId = model.CategorieId
+                Categorie = model.Categorie,
+                Actief = model.Actief
             };
+        }
+
+        public List<Product> ViewModelsToModels(List<ProductDetailViewModel> viewModels)
+        {
+            throw new NotImplementedException();
         }
 
         public Product ViewModelToModel(ProductDetailViewModel vm)
@@ -38,7 +69,8 @@ namespace KnikkerShop.Converters
                 Beschrijving = vm.Beschrijving,
                 Plaatje = vm.Plaatje,
                 Voorraad = vm.Voorraad,
-                CategorieId = vm.CategorieId
+                CategorieId = vm.CategorieId,
+                Actief = vm.Actief,
             };
         }
     }

@@ -9,10 +9,30 @@ namespace KnikkerShop.Parsers
 {
     public static class DataSetParser
     {
-        public static List<Categorie> DataSetToList(DataSet set, int rowindex)
+        public static Product DataSetToProduct(DataSet set, int rowIndex)
         {
-            List<Categorie> list = new List<Categorie>();
-            return list;
+            return new Product()
+            {
+                Id = (int)set.Tables[0].Rows[rowIndex][0],
+                Naam = (string)set.Tables[0].Rows[rowIndex][1],
+                Prijs = (string)set.Tables[0].Rows[rowIndex][2],
+                Grootte = (string)set.Tables[0].Rows[rowIndex][3],
+                Kleur = (string)set.Tables[0].Rows[rowIndex][4],
+                Beschrijving = (string)set.Tables[0].Rows[rowIndex][5],
+                Voorraad = (int)set.Tables[0].Rows[rowIndex][6],
+                Categorie = (string)set.Tables[0].Rows[rowIndex][7],
+                CategorieId = (int)set.Tables[0].Rows[rowIndex][8],
+                Actief = (int)set.Tables[0].Rows[rowIndex][9],
+            };
+        }
+
+        public static Categorie DataSetToCategorie(DataSet set, int rowIndex)
+        {
+            return new Categorie()
+            {
+                Id = (int)set.Tables[0].Rows[rowIndex][0],
+                Naam = (string)set.Tables[0].Rows[rowIndex][1],
+            };
         }
 
         private static T TryParse<T>(object obj)

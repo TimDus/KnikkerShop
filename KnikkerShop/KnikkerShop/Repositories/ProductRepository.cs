@@ -16,13 +16,28 @@ namespace KnikkerShop.Repositories
             this.context = context;
         }
 
-        public bool Insert(Product product)
+        public long Insert(Product product)
         {
             if (product == null)
             {
                 throw new NullReferenceException("Geen product.");
             }
             return context.Insert(product);
+        }
+
+        public List<Product> GetAll()
+        {
+            return context.GetAll();
+        }
+
+        public bool Update(Product obj)
+        {
+            return context.Update(obj);
+        }
+
+        public Product GetById(long id)
+        {
+            return context.GetById(id);
         }
     }
 }

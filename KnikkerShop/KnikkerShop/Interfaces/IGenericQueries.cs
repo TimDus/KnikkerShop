@@ -10,8 +10,8 @@ namespace KnikkerShop.Interfaces
         List<T> GetAll();
         T GetById(long id);
 
-        bool Insert(T obj);
+        long Insert(T obj);
         bool Update(T obj);
-        bool Activation(int id);
+        bool Activation(int id, int active);
     }
 }

@@ -7,7 +7,7 @@ namespace KnikkerShop.Models
 {
     public class CategorieDetailViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Naam { get; set; }
     }
 }

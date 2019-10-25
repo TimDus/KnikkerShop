@@ -37,6 +37,18 @@ namespace KnikkerShop.Models.Data
             this.Email = email;
         }
 
+        public bool IsInRole(string roleName)
+        {
+            bool isInRole = false;
+
+            if (roleName == "Klant")
+                isInRole = true;
+            else if (roleName == "beheerder")
+                isInRole = true;
+
+            return isInRole;
+        }
+
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

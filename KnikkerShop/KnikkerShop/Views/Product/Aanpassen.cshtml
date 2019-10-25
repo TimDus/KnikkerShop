@@ -1,7 +1,62 @@
-﻿
+﻿@model KnikkerShop.Models.ProductDetailViewModel
+
 @{
     ViewData["Title"] = "Aanpassen";
 }
 
-<h1>Aanpassen</h1>
+<h2>Aanpassen</h2>
 
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Aanpassen">
+            <div class="form-group">
+                <label asp-for="Naam" class="control-label"></label>
+                <input asp-for="Naam" class="form-control" />
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prijs" class="control-label"></label>
+                <input asp-for="Prijs" class="form-control" />
+                <span asp-validation-for="Prijs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grootte" class="control-label"></label>
+                <input asp-for="Grootte" class="form-control" />
+                <span asp-validation-for="Grootte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kleur" class="control-label"></label>
+                <input asp-for="Kleur" class="form-control" />
+                <span asp-validation-for="Kleur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beschrijving" class="control-label"></label>
+                <input asp-for="Beschrijving" class="form-control" />
+                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Categorie</label>
+                <select asp-for="CategorieId" class="form-control">
+                    @for (int i = 1; i < Model.CategorieList.Count()+1; i++)
+                    {
+                        if (i == Model.CategorieId)
+                        {
+                            <option selected value="@i">@Model.CategorieList[i-1].Naam</option>
+                        }
+                        else
+                        {
+                            <option value="@i">@Model.CategorieList[i-1].Naam</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="CategorieId" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Opslaan" class="btn btn-default" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Terug naar lijst</a>
+</div>

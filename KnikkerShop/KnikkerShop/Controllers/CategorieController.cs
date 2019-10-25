@@ -30,8 +30,10 @@ namespace KnikkerShop.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            ProductViewModel vm = new ProductViewModel();
-
+            CategorieViewModel vm = new CategorieViewModel();
+            List<Categorie> categories = new List<Categorie>();
+            categories = categorieRepository.GetAll();
+            vm.CategorieDetailViewModels = converter.ModelsToViewModels(categories);
             return View(vm);
         }
 
@@ -42,31 +44,42 @@ namespace KnikkerShop.Controllers
         }
 
         [HttpGet]
-        public IActionResult Aanpassen()
+        public IActionResult Aanpassen(long id)
         {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Info()
-        {
-            return View();
+            Categorie categorie = categorieRepository.GetById(id);
+            CategorieDetailViewModel vm = converter.ModelToViewModel(categorie);
+            return View(vm);
         }
 
         [HttpPost]
-        [Authorize(Roles = "beheerder")]
-        public IActionResult Create(CategorieDetailViewModel vm)
+        public IActionResult Creëer(CategorieDetailViewModel vm)
         {
             // Check if model is valid
             if (ModelState.IsValid)
             {
-                Product product = converter.ViewModelToModel(vm);
-                bool created = productRepository.Insert(product);
+                Categorie categorie = converter.ViewModelToModel(vm);
+                long id = categorieRepository.Insert(categorie);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(vm);
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Aanpassen(CategorieDetailViewModel vm)
+        {
+            // Check if model is valid
+            if (ModelState.IsValid)
+            {
+                Categorie categorie = converter.ViewModelToModel(vm);
+                bool Update = categorieRepository.Update(categorie);    
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
             }
         }
     }

@@ -36,7 +36,7 @@ namespace KnikkerShop.Context.Authentication
                 using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Account](username, email, password) OUTPUT INSERTED.ID VALUES (@username,@email,@password)", connection);
+                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Account](username, email, password, RoleId) OUTPUT INSERTED.ID VALUES (@username,@email,@password, 1)", connection);
                     sqlCommand.Parameters.AddWithValue("@username", user.UserName);
                     sqlCommand.Parameters.AddWithValue("@email", user.Email);
                     sqlCommand.Parameters.AddWithValue("@password", user.Password);
@@ -199,7 +199,7 @@ namespace KnikkerShop.Context.Authentication
                 using (var connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT r.[naam] FROM [Role] r INNER JOIN [AccountRole] ur ON ur.[roleId] = r.id WHERE ur.userId = @userId", connection);
+                    SqlCommand sqlCommand = new SqlCommand("SELECT r.[naam] FROM [Role] r INNER JOIN [Account] ur ON ur.[roleId] = r.id WHERE ur. Id = @userId", connection);
                     sqlCommand.Parameters.AddWithValue("@userId", user.Id);
                     using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
                     {

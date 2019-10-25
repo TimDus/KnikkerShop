@@ -1,0 +1,68 @@
+﻿@model KnikkerShop.Models.ProductDetailViewModel
+
+@{
+    ViewData["Title"] = "Aanpassen";
+}
+
+<h2>Aanpassen</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Prijs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Prijs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Grootte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Grootte)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kleur)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kleur)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Beschrijving)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Beschrijving)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Voorraad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voorraad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Categorie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Actief)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Actief)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("beheerder"))
+    {
+        @Html.ActionLink("Aanpassen", "Aanpassen", new { id = Model.Id }) @: |
+    }
+    <a asp-action="Index">Terug naar lijst</a>
+</div>

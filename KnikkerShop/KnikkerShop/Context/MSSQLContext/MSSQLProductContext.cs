@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
+using KnikkerShop.Parsers;
 
 namespace KnikkerShop.Context.MSSQLContext
 {
@@ -16,9 +18,38 @@ namespace KnikkerShop.Context.MSSQLContext
         {
         }
 
-        public bool Activation(int id)
+        public bool Activation(int id, int active)
         {
-            throw new NotImplementedException();
+            if(active == 1)
+            {
+                string sql = "UPDATE Product SET Actief = 0 WHERE id = @id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("id", id.ToString()),
+                };
+
+                ExecuteSql(sql, parameters);
+
+                return true;
+            }
+            else if(active == 0)
+            {
+                string sql = "UPDATE Product SET Actief = 1 WHERE id = @id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("id", id.ToString()),
+                };
+
+                ExecuteSql(sql, parameters);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool AddStock(int Aantal)
@@ -28,19 +59,62 @@ namespace KnikkerShop.Context.MSSQLContext
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string sql = "SELECT P.Id, P.Naam, P.Prijs, P.Grootte, P.Kleur, P.Beschrijving, P.Voorraad, C.Naam, P.CategorieId, P.Actief FROM Product as P INNER JOIN Categorie as C ON P.CategorieId = C.Id";
+                List<Product> producten = new List<Product>();
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                };
+
+                ExecuteSql(sql, parameters);
+
+                DataSet result = ExecuteSql(sql, parameters);
+
+                if (result != null && result.Tables[0].Rows.Count > 0)
+                {
+                    for (int x = 0; x < result.Tables[0].Rows.Count; x++)
+                    {
+                        Product p = DataSetParser.DataSetToProduct(result, x);
+                        producten.Add(p);
+                    }
+                }
+
+                return producten;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Product GetById(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string sql = "SELECT P.Id, P.Naam, P.Prijs, P.Grootte, P.Kleur, P.Beschrijving, P.Voorraad, C.Naam, P.CategorieId FROM Product as P INNER JOIN Categorie as C ON P.CategorieId = C.Id WHERE P.Id = @Id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("Id", id.ToString()),
+                };
+
+                DataSet results = ExecuteSql(sql, parameters);
+                Product p = DataSetParser.DataSetToProduct(results, 0);
+                return p;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public bool Insert(Product product)
+        public long Insert(Product product)
         {
             try
             {
-                string sql = "INSERT INTO Product(Naam, Prijs, Grootte, Kleur, Beschrijving, CategorieId) VALUES(@naam, @prijs, @grootte, @kleur, @beschrijving, @categorieId)";
+                string sql = "INSERT INTO Product(Naam, Prijs, Grootte, Kleur, Beschrijving, Voorraad, CategorieId , Actief) OUTPUT Inserted.Id VALUES(@naam, @prijs, @grootte, @kleur, @beschrijving, 1,@categorieId, 1)";
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {
@@ -52,9 +126,9 @@ namespace KnikkerShop.Context.MSSQLContext
                     new KeyValuePair<string, string>("categorieId", Convert.ToString(product.CategorieId))
                 };
 
-                ExecuteSql(sql, parameters);
+                long result = ExecuteInsert(sql, parameters);
 
-                return true;
+                return result;
             }
             catch (Exception e)
             {
@@ -69,7 +143,29 @@ namespace KnikkerShop.Context.MSSQLContext
 
         public bool Update(Product product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string sql = "UPDATE Product SET naam = @naam, categorieId = @categorieId, beschrijving = @beschrijving, prijs = @prijs, grootte = @grootte, kleur = @kleur WHERE id = @id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("naam", product.Naam),
+                    new KeyValuePair<string, string>("categorieId", product.CategorieId.ToString()),
+                    new KeyValuePair<string, string>("beschrijving", product.Beschrijving),
+                    new KeyValuePair<string, string>("prijs", product.Prijs.ToString()),
+                    new KeyValuePair<string, string>("grootte", product.Grootte),
+                    new KeyValuePair<string, string>("kleur", product.Kleur),
+                    new KeyValuePair<string, string>("id", product.Id.ToString()),
+                };
+
+                ExecuteSql(sql, parameters);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }   
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using KnikkerShop.Context.IContext;
+using KnikkerShop.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +16,28 @@ namespace KnikkerShop.Repositories
             this.context = context;
         }
 
-        public bool Insert(string obj)
+        public List<Categorie> GetAll()
+        {
+            return context.GetAll();
+        }
+
+        public Categorie GetById(long id)
+        {
+            return context.GetById(id);
+        }
+
+        public long Insert(Categorie obj)
         {
             if (obj == null)
             {
                 throw new NullReferenceException("Geen categorie.");
             }
             return context.Insert(obj);
+        }
+
+        public bool Update(Categorie obj)
+        {
+            return context.Update(obj);
         }
     }
 }

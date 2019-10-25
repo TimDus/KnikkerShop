@@ -14,6 +14,8 @@ namespace KnikkerShop.Models.Data
         public string Beschrijving { get; set; }
         public byte[] Plaatje { get; set; }
         public int Voorraad { get; set; }
-        public Categorie categorie { get; set; }
+        public long CategorieId { get; set; }
+        public string Categorie { get; set; }
+        public bool Actief { get; set; }
     }
 }

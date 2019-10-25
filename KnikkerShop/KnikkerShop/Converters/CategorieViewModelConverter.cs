@@ -1,5 +1,6 @@
 ﻿using KnikkerShop.Interfaces;
 using KnikkerShop.Models;
+using KnikkerShop.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,44 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Converters
 {
-    public class CategorieViewModelConverter : IViewModelConverter<string, CategorieDetailViewModel>
+    public class CategorieViewModelConverter : IViewModelConverter<Categorie, CategorieDetailViewModel>
     {
-        public CategorieDetailViewModel ModelToViewModel(string model)
+        public List<CategorieDetailViewModel> ModelsToViewModels(List<Categorie> models)
+        {
+            List<CategorieDetailViewModel> result = new List<CategorieDetailViewModel>();
+
+            foreach (Categorie d in models)
+            {
+                result.Add(ModelToViewModel(d));
+            }
+            return result;
+        }
+
+        public CategorieDetailViewModel ModelToViewModel(Categorie model)
+        {
+            CategorieDetailViewModel vm = new CategorieDetailViewModel()
+            {
+                Id = model.Id,
+                Naam = model.Naam
+            };
+
+            return vm;
+        }
+
+        public List<Categorie> ViewModelsToModels(List<CategorieDetailViewModel> viewModels)
         {
             throw new NotImplementedException();
         }
 
-        public string ViewModelToModel(CategorieDetailViewModel viewModel)
+        public Categorie ViewModelToModel(CategorieDetailViewModel viewModel)
         {
-            throw new NotImplementedException();
+            Categorie c = new Categorie()
+            {
+                Naam = viewModel.Naam,
+                Id = viewModel.Id
+            };
+
+            return c;
         }
     }
 }
