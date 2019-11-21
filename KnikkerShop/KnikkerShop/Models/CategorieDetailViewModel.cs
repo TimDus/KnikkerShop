@@ -9,5 +9,6 @@ namespace KnikkerShop.Models
     {
         public long Id { get; set; }
         public string Naam { get; set; }
+        public bool Actief { get; set; }
     }
 }

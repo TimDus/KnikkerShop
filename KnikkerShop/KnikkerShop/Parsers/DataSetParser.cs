@@ -13,7 +13,7 @@ namespace KnikkerShop.Parsers
         {
             return new Product()
             {
-                Id = (int)set.Tables[0].Rows[rowIndex][0],
+                Id = (long)set.Tables[0].Rows[rowIndex][0],
                 Naam = (string)set.Tables[0].Rows[rowIndex][1],
                 Prijs = (string)set.Tables[0].Rows[rowIndex][2],
                 Grootte = (string)set.Tables[0].Rows[rowIndex][3],
@@ -22,7 +22,7 @@ namespace KnikkerShop.Parsers
                 Voorraad = (int)set.Tables[0].Rows[rowIndex][6],
                 Categorie = (string)set.Tables[0].Rows[rowIndex][7],
                 CategorieId = (int)set.Tables[0].Rows[rowIndex][8],
-                Actief = (int)set.Tables[0].Rows[rowIndex][9],
+                Actief = (bool)set.Tables[0].Rows[rowIndex][9],
             };
         }
 
@@ -32,6 +32,7 @@ namespace KnikkerShop.Parsers
             {
                 Id = (int)set.Tables[0].Rows[rowIndex][0],
                 Naam = (string)set.Tables[0].Rows[rowIndex][1],
+                Actief = (bool)set.Tables[0].Rows[rowIndex][2],
             };
         }
 

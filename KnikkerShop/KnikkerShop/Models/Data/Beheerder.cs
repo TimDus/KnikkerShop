@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class Beheerder : Account
+    public class Beheerder : BaseAccount
     {
         bool IsHelper { get; set; }
     }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using KnikkerShop.Context.Authentication;
 using KnikkerShop.Context.IContext;
+using KnikkerShop.Context.MemoryContext;
 using KnikkerShop.Context.MSSQLContext;
 using KnikkerShop.Models.Data;
 using KnikkerShop.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +38,9 @@ namespace KnikkerShop
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddSession();
+
             // Sql contexts
             services.AddScoped<IProductContext, MSSQLProductContext>();
             services.AddScoped<ICategorieContext, MSSQLCategorieContext>();
@@ -45,11 +50,35 @@ namespace KnikkerShop
             services.AddScoped<CategorieRepository>();
 
             //Useraccounts and roles
-            services.AddTransient<IUserStore<Account>, MSSQLUserContext>();
-            services.AddTransient<IRoleStore<Role>, MSSQLRoleContext>();
-            services.AddIdentity<Account, Role>().AddDefaultTokenProviders();
+            services.AddTransient<IUserStore<BaseAccount>, MSSQLUserContext>();
+            services.AddTransient<IRoleStore<Role>, RoleMemoryContext>();
+            services.AddIdentity<BaseAccount, Role>()
+                .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // TODO: access denied pagina maken
+                options.AccessDeniedPath = "/Error/AccessDenied";
+                options.Cookie.Name = "Cookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(720);
+                options.LoginPath = new PathString("/");
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +98,8 @@ namespace KnikkerShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

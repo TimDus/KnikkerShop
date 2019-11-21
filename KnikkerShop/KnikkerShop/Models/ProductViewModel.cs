@@ -7,6 +7,6 @@ namespace KnikkerShop.Models
 {
     public class ProductViewModel
     {
-        public List<ProductDetailViewModel> Products { get; set; } = new List<ProductDetailViewModel>();
+        public List<ProductDetailViewModel> ProductDetailViewModels { get; set; } = new List<ProductDetailViewModel>();
     }
 }

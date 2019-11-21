@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KnikkerShop.Models.Data
 {
-    public class Klant : Account
+    public class Klant : BaseAccount
     {
         string Postcode { get; set; }
         string Huisnummer { get; set; }

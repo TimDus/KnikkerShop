@@ -12,6 +12,7 @@ using KnikkerShop.Repositories;
 
 namespace KnikkerShop.Controllers
 {
+    [Authorize(Roles = "Beheerder")]
     public class ProductController : BaseController
     {
         // Repos
@@ -38,7 +39,7 @@ namespace KnikkerShop.Controllers
             ProductViewModel vm = new ProductViewModel();
             List<Product> products = new List<Product>();
             products = productRepository.GetAll();
-            vm.Products = productConverter.ModelsToViewModels(products);
+            vm.ProductDetailViewModels = productConverter.ModelsToViewModels(products);
 
             return View(vm);
         }
@@ -78,7 +79,8 @@ namespace KnikkerShop.Controllers
             ProductDetailViewModel vm = new ProductDetailViewModel();
             Product product = productRepository.GetById(id);
             vm = productConverter.ModelToViewModel(product);
-            return View(vm);
+            productRepository.Activation(id, product.Actief);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

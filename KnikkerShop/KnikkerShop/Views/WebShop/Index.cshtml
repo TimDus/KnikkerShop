@@ -1,0 +1,33 @@
+﻿@model KnikkerShop.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "WebShop";
+}
+
+<h2>WebShop</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (ProductDetailViewModel item in Model.ProductDetailViewModels)
+        {
+            if (item.Actief == true)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <a href='@Url.Action("Detail", "WebShop", new { id = item.Id })' />
+                    <span class="thumbnail" />
+                    <img src="http://placehold.it/500x400" alt="KnikkerPlaatje">
+                    <h4>@item.Naam</h4>
+                    <p>@item.Beschrijving</p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <p class="price">$@item.Prijs</p>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <button class="btn btn-success right">In winkelwagen</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

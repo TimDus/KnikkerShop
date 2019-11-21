@@ -39,5 +39,10 @@ namespace KnikkerShop.Repositories
         {
             return context.Update(obj);
         }
+
+        public bool Activation(long id, bool active)
+        {
+            return context.Activation(id, active);
+        }
     }
 }

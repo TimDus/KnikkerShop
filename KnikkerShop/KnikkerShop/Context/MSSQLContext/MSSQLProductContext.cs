@@ -18,9 +18,9 @@ namespace KnikkerShop.Context.MSSQLContext
         {
         }
 
-        public bool Activation(int id, int active)
+        public bool Activation(long id, bool active)
         {
-            if(active == 1)
+            if(active == true)
             {
                 string sql = "UPDATE Product SET Actief = 0 WHERE id = @id";
 
@@ -33,7 +33,7 @@ namespace KnikkerShop.Context.MSSQLContext
 
                 return true;
             }
-            else if(active == 0)
+            else if(active == false)
             {
                 string sql = "UPDATE Product SET Actief = 1 WHERE id = @id";
 
@@ -93,7 +93,7 @@ namespace KnikkerShop.Context.MSSQLContext
         {
             try
             {
-                string sql = "SELECT P.Id, P.Naam, P.Prijs, P.Grootte, P.Kleur, P.Beschrijving, P.Voorraad, C.Naam, P.CategorieId FROM Product as P INNER JOIN Categorie as C ON P.CategorieId = C.Id WHERE P.Id = @Id";
+                string sql = "SELECT P.Id, P.Naam, P.Prijs, P.Grootte, P.Kleur, P.Beschrijving, P.Voorraad, C.Naam, P.CategorieId, P.Actief FROM Product as P INNER JOIN Categorie as C ON P.CategorieId = C.Id WHERE P.Id = @Id";
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {

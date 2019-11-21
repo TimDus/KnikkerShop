@@ -12,27 +12,14 @@ namespace KnikkerShop.Converters
     {
         public List<ProductDetailViewModel> ModelsToViewModels(List<Product> models)
         {
-            List<ProductDetailViewModel> productDetailViewModels = new List<ProductDetailViewModel>();
+            List<ProductDetailViewModel> result = new List<ProductDetailViewModel>();
 
             foreach (Product p in models)
             {
-                ProductDetailViewModel vm = new ProductDetailViewModel()
-                {
-                    Id = p.Id,
-                    Voorraad = p.Voorraad,
-                    CategorieId = p.CategorieId,
-                    Prijs = p.Prijs,
-                    Naam = p.Naam,
-                    Kleur = p.Kleur,
-                    Grootte = p.Grootte,
-                    Beschrijving = p.Beschrijving,
-                    Categorie = p.Categorie,
-                    Actief = p.Actief,
-                };
-                productDetailViewModels.Add(vm);
+                result.Add(ModelToViewModel(p));
             }
 
-            return productDetailViewModels;
+            return result;
         }
 
         public ProductDetailViewModel ModelToViewModel(Product model)
@@ -50,11 +37,6 @@ namespace KnikkerShop.Converters
                 Categorie = model.Categorie,
                 Actief = model.Actief
             };
-        }
-
-        public List<Product> ViewModelsToModels(List<ProductDetailViewModel> viewModels)
-        {
-            throw new NotImplementedException();
         }
 
         public Product ViewModelToModel(ProductDetailViewModel vm)

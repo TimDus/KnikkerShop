@@ -11,6 +11,5 @@ namespace KnikkerShop.Interfaces
         TModel ViewModelToModel(TViewModel viewModel);
 
         List<TViewModel> ModelsToViewModels(List<TModel> models);
-        List<TModel> ViewModelsToModels(List<TViewModel> viewModels);
     }
 }

@@ -36,7 +36,14 @@
                     <td>@Html.DisplayFor(modelItem => item.Naam)</td>
                     <td>
                         @Html.ActionLink("Aanpassen", "Aanpassen", new { id = item.Id }) |
-                        @Html.ActionLink("Activeren", "Activeren", new { id = item.Id })
+                        @if (item.Actief == false)
+                        {
+                            @Html.ActionLink("Activeren", "Activeren", new { id = item.Id })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Deactiveren", "Activeren", new { id = item.Id })
+                        }
                     </td>
                 </tr>
             }

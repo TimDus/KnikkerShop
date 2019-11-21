@@ -38,9 +38,12 @@
             <div class="form-group">
                 <label asp-for="CategorieId" class="control-label"></label>
                 <select asp-for="CategorieId" class="form-control">
-                    @for (int i = 0; i < Model.CategorieList.Count(); i++)
+                    @for (int i = 1; i < Model.CategorieList.Count()+1; i++)
                     {
-                        <option value="@i">@Model.CategorieList[i].Naam</option>
+                        @if (Model.CategorieList[i-1].Actief == true)
+                        {
+                            <option value="@i">@Model.CategorieList[i-1].Naam</option>
+                        }
                     }
                 </select>
                 <span asp-validation-for="CategorieId" class="text-danger"></span>

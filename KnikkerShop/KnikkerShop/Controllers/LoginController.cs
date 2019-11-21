@@ -14,10 +14,10 @@ namespace KnikkerShop.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        private readonly UserManager<Account> _userManager;
-        private readonly SignInManager<Account> _signInManager;
+        private readonly UserManager<BaseAccount> _userManager;
+        private readonly SignInManager<BaseAccount> _signInManager;
 
-        public LoginController(UserManager<Account> userManager, SignInManager<Account> signInManager)
+        public LoginController(UserManager<BaseAccount> userManager, SignInManager<BaseAccount> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -76,7 +76,7 @@ namespace KnikkerShop.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                Account baseaccount = new Account(-1, model.Naam, model.Email);
+                BaseAccount baseaccount = new BaseAccount(-1, model.Naam, model.Email);
                 var result = await _userManager.CreateAsync(baseaccount, model.Password);
                 if (result.Succeeded)
                 {

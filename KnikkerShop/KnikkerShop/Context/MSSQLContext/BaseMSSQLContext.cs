@@ -81,7 +81,7 @@ namespace KnikkerShop.Context.MSSQLContext
             }
         }
 
-        public DataSet ExecuteStoredProcedure(string Procedurename, long id = 0)
+        public DataSet ExecuteStoredProcedure(string Procedurename)
         {
             DataSet ds = new DataSet();
             try
@@ -93,10 +93,6 @@ namespace KnikkerShop.Context.MSSQLContext
                     CommandType = CommandType.StoredProcedure,
                     Connection = conn,
                 };
-                if (id != 0)
-                {
-                    cmd.Parameters.Add("@GebruikerId", SqlDbType.VarChar).Value = id;
-                }
                 da.SelectCommand = cmd;
 
                 conn.Open();

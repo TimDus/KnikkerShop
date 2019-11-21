@@ -17,9 +17,38 @@ namespace KnikkerShop.Context.MSSQLContext
         {
         }
 
-        public bool Activation(int id, int active)
+        public bool Activation(long id, bool active)
         {
-            throw new NotImplementedException();
+            if (active == true)
+            {
+                string sql = "UPDATE Categorie SET Actief = 0 WHERE id = @id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("id", id.ToString()),
+                };
+
+                ExecuteSql(sql, parameters);
+
+                return true;
+            }
+            else if (active == false)
+            {
+                string sql = "UPDATE Categorie SET Actief = 1 WHERE id = @id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("id", id.ToString()),
+                };
+
+                ExecuteSql(sql, parameters);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public long Insert(Categorie obj)
@@ -101,7 +130,7 @@ namespace KnikkerShop.Context.MSSQLContext
         {
             try
             {
-                string sql = "SELECT Id, Naam FROM Categorie WHERE Id = @Id";
+                string sql = "SELECT * FROM Categorie WHERE Id = @Id";
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {

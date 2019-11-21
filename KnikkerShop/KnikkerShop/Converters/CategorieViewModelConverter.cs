@@ -18,6 +18,7 @@ namespace KnikkerShop.Converters
             {
                 result.Add(ModelToViewModel(d));
             }
+
             return result;
         }
 
@@ -26,15 +27,11 @@ namespace KnikkerShop.Converters
             CategorieDetailViewModel vm = new CategorieDetailViewModel()
             {
                 Id = model.Id,
-                Naam = model.Naam
+                Naam = model.Naam,
+                Actief = model.Actief
             };
 
             return vm;
-        }
-
-        public List<Categorie> ViewModelsToModels(List<CategorieDetailViewModel> viewModels)
-        {
-            throw new NotImplementedException();
         }
 
         public Categorie ViewModelToModel(CategorieDetailViewModel viewModel)
@@ -42,7 +39,8 @@ namespace KnikkerShop.Converters
             Categorie c = new Categorie()
             {
                 Naam = viewModel.Naam,
-                Id = viewModel.Id
+                Id = viewModel.Id,
+                Actief = viewModel.Actief
             };
 
             return c;

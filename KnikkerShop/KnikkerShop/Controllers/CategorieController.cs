@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KnikkerShop.Controllers
 {
+    [Authorize(Roles = "Beheerder")]
     public class CategorieController : BaseController
     {
         // Repos
@@ -49,6 +50,16 @@ namespace KnikkerShop.Controllers
             Categorie categorie = categorieRepository.GetById(id);
             CategorieDetailViewModel vm = converter.ModelToViewModel(categorie);
             return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Activeren(long id)
+        {
+            CategorieDetailViewModel vm = new CategorieDetailViewModel();
+            Categorie categorie = categorieRepository.GetById(id);
+            vm = converter.ModelToViewModel(categorie);
+            categorieRepository.Activation(id, categorie.Actief);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

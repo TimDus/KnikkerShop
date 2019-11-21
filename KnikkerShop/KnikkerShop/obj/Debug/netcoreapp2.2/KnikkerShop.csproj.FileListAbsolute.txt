@@ -30,7 +30,6 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Login\Index.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Login\Registreer.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Login\AccesDenied.g.cshtml.cs
-D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csprojAssemblyReference.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Product\Index.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Product\Creëer.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Product\Aanpassen.g.cshtml.cs
@@ -38,3 +37,6 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Categorie\Creëer.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Categorie\Index.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Product\Detail.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\WebShop\Index.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csprojAssemblyReference.cache
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\WebShop\Detail.g.cshtml.cs

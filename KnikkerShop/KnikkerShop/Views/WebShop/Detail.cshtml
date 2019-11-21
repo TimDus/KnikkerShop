@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detail";
 }
 
-<h2>Aanpassen</h2>
+<h2>Detail</h2>
 
 <div>
     <hr />
@@ -51,12 +51,6 @@
         <dd>
             @Html.DisplayFor(model => model.Categorie)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Actief)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Actief)
-        </dd>
     </dl>
 </div>
 <div>
@@ -64,5 +58,5 @@
     {
         @Html.ActionLink("Aanpassen", "Aanpassen", new { id = Model.Id }) @: |
     }
-    <a asp-action="Index">Terug naar lijst</a>
+    <a asp-action="Index">Terug naar winkel</a>
 </div>

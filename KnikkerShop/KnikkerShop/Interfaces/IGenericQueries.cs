@@ -12,6 +12,6 @@ namespace KnikkerShop.Interfaces
 
         long Insert(T obj);
         bool Update(T obj);
-        bool Activation(int id, int active);
+        bool Activation(long id, bool active);
     }
 }
