@@ -10,7 +10,6 @@ namespace KnikkerShop.Models.Data
         public BaseAccount()
         { }
 
-        public string Role { get; set; }
         public long RoleId { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
@@ -25,7 +24,6 @@ namespace KnikkerShop.Models.Data
             Email = email;
             NormalizedUserName = userName.ToUpper();
             NormalizedEmail = email.ToUpper();
-            Role = "Beheerder";
         }
 
         public BaseAccount(long id, string userName, string email, string password, int roleid)
@@ -40,18 +38,6 @@ namespace KnikkerShop.Models.Data
                 NormalizedUserName = userName.ToUpper();
             }
             NormalizedEmail = email.ToUpper();
-        }
-
-        public bool IsInRole(string roleName)
-        {
-            bool isInRole = false;
-
-            if (roleName == "Beheerder")
-                isInRole = true;
-            else if (roleName == "Klant")
-                isInRole = true;
-
-            return isInRole;
         }
 
         public string GetRole()

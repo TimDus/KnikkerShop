@@ -17,5 +17,6 @@ namespace KnikkerShop.Models.Data
         public long CategorieId { get; set; }
         public string Categorie { get; set; }
         public bool Actief { get; set; }
+        public int Aantal { get; set; }
     }
 }

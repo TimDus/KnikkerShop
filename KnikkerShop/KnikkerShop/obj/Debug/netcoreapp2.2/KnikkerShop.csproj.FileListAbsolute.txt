@@ -40,3 +40,6 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\WebShop\Index.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\KnikkerShop.csprojAssemblyReference.cache
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\WebShop\Detail.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Winkelwagen\Index.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Bestellen\Index.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Bestellen\Inloggen.g.cshtml.cs

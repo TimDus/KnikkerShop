@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KnikkerShop.Converters;
+using KnikkerShop.Helper;
 using KnikkerShop.Models;
 using KnikkerShop.Models.Data;
 using KnikkerShop.Repositories;

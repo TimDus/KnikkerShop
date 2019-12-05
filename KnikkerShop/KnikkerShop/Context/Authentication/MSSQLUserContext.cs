@@ -265,9 +265,26 @@ namespace KnikkerShop.Context.Authentication
         {
             try
             {
+
                 cancellationToken.ThrowIfCancellationRequested();
 
-                return Task.FromResult(user.IsInRole(roleName));
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand sqlCommand = new SqlCommand("SELECT [id] FROM [Role] WHERE [naam] = @normalizedName", connection);
+                    sqlCommand.Parameters.AddWithValue("@normalizedName", roleName.ToUpper());
+                    int? roleId = sqlCommand.ExecuteScalar() as int?;
+
+                    SqlCommand sqlCommandUserRole = new SqlCommand("SELECT COUNT(*) FROM [UserRole] WHERE [userId] = @userId AND [roleId] =@roleId", connection);
+                    sqlCommandUserRole.Parameters.AddWithValue("@userId", user.Id);
+                    sqlCommandUserRole.Parameters.AddWithValue("@roleId", roleId);
+
+                    int? roleCount = sqlCommandUserRole.ExecuteScalar() as int?;
+
+                    return Task.FromResult(roleCount > 0);
+
+                }
 
             }
             catch (Exception)
@@ -275,35 +292,6 @@ namespace KnikkerShop.Context.Authentication
 
                 throw;
             }
-            //try
-            //{
-
-            //    cancellationToken.ThrowIfCancellationRequested();
-
-            //    using (var connection = new SqlConnection(_connectionString))
-            //    {
-            //        connection.Open();
-
-            //        SqlCommand sqlCommand = new SqlCommand("SELECT [id] FROM [Role] WHERE [naam] = @normalizedName", connection);
-            //        sqlCommand.Parameters.AddWithValue("@normalizedName", roleName.ToUpper());
-            //        int? roleId = sqlCommand.ExecuteScalar() as int?;
-
-            //        SqlCommand sqlCommandUserRole = new SqlCommand("SELECT COUNT(*) FROM [UserRole] WHERE [userId] = @userId AND [roleId] =@roleId", connection);
-            //        sqlCommandUserRole.Parameters.AddWithValue("@userId", user.Id);
-            //        sqlCommandUserRole.Parameters.AddWithValue("@roleId", roleId);
-
-            //        int? roleCount = sqlCommandUserRole.ExecuteScalar() as int?;
-
-            //        return Task.FromResult(roleCount > 0);
-
-            //    }
-
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
         }
 
         public Task RemoveFromRoleAsync(BaseAccount user, string roleName, CancellationToken cancellationToken)
