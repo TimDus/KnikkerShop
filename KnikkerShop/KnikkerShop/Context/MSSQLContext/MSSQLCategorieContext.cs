@@ -98,7 +98,7 @@ namespace KnikkerShop.Context.MSSQLContext
         {
             try
             {
-                string sql = "SELECT * From Categorie";
+                string sql = "SELECT Id, Naam, Actief From Categorie";
                 List<Categorie> categorien = new List<Categorie>();
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
@@ -130,7 +130,7 @@ namespace KnikkerShop.Context.MSSQLContext
         {
             try
             {
-                string sql = "SELECT * FROM Categorie WHERE Id = @Id";
+                string sql = "SELECT Id, Naam, Actief FROM Categorie WHERE Id = @Id";
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {

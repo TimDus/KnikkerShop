@@ -11,5 +11,6 @@ namespace KnikkerShop.Models
         public int TotalPrijs { get; set; }
         public List<Product> Producten = new List<Product>();
         public BaseAccount BaseAccount = new BaseAccount();
+        public DateTime Leverdatum { get; set; }
     }
 }

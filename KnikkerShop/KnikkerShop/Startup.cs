@@ -59,7 +59,7 @@ namespace KnikkerShop
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.AccessDeniedPath = "/Home/Index";
+                options.AccessDeniedPath = "/Home/AccesDenied";
                 options.Cookie.Name = "Cookie";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(720);
