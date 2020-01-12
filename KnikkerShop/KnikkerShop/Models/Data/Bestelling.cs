@@ -14,7 +14,7 @@ namespace KnikkerShop.Models.Data
         public string Postcode { get; set; }
         public string Huisnummer { get; set; }
         public  bool Actief { get; set; }
-        public List<long> ProductIds { get; set; }
+        public List<Product> ProductIds { get; set; }
         public string Prijs { get; set; }
     }
 }

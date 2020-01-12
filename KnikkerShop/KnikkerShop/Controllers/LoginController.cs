@@ -77,6 +77,8 @@ namespace KnikkerShop.Controllers
             if (ModelState.IsValid)
             {
                 BaseAccount baseaccount = new BaseAccount(-1, model.Naam, model.Email);
+                baseaccount.Postcode = model.Postcode;
+                baseaccount.Huisnummer = model.Huisnummer;
                 var result = await _userManager.CreateAsync(baseaccount, model.Password);
                 if (result.Succeeded)
                 {

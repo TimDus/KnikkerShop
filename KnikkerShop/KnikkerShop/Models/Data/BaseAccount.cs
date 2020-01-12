@@ -15,6 +15,9 @@ namespace KnikkerShop.Models.Data
         public string Email { get; set; }
         public string Password { get; set; }
         public string NormalizedEmail { get; set; }
+        public string Postcode { get; set; }
+        public string Huisnummer { get; set; }
+
         public string NormalizedUserName { get { return UserName.ToUpper(); } set { UserName = value.ToUpper(); } }
 
         public BaseAccount(long id, string userName, string email)

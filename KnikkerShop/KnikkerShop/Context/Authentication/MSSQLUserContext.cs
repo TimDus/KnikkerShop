@@ -38,7 +38,9 @@ namespace KnikkerShop.Context.Authentication
                 string query = "exec InsertKlant " +
                                "@Username = @username, " +
                                "@Password = @password, " +
-                               "@Email = @email ";
+                               "@Email = @email, " +
+                               "@Huisnummer = @huisnummer, " +
+                               "@Postcode = @postcode";
 
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@username", user.UserName);
@@ -49,6 +51,8 @@ namespace KnikkerShop.Context.Authentication
                     new KeyValuePair<string, string>("username", user.UserName),
                     new KeyValuePair<string, string>("email", user.Email),
                     new KeyValuePair<string, string>("password", user.Password),
+                    new KeyValuePair<string, string>("huisnummer", user.Huisnummer),
+                    new KeyValuePair<string, string>("postcode", user.Postcode),
                 };
                 ExecuteInsert(query, parameters);
                 return Task.FromResult<IdentityResult>(IdentityResult.Success);

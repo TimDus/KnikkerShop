@@ -21,6 +21,16 @@ namespace KnikkerShop.Controllers
         private readonly ProductViewModelConverter productconverter = new ProductViewModelConverter();
         private readonly BestellingViewModelConverter bestellingconverter = new BestellingViewModelConverter();
 
+        public BestellingController
+            (
+                ProductRepository productRepository,
+                BestellingRepository bestellingRepository
+            )
+        {
+            this.productRepository = productRepository;
+            this.bestellingRepository = bestellingRepository;
+        }
+
         public IActionResult Index()
         {
             WinkelwagenViewModel cart = new WinkelwagenViewModel();
@@ -59,7 +69,7 @@ namespace KnikkerShop.Controllers
             }
             foreach(Product product in cart)
             {
-                bestelling.ProductIds.Add(product.Id);
+                bestelling.ProductIds.Add(product);
             }
             bestellingRepository.Insert(bestelling);
             HttpContext.Session.Clear();

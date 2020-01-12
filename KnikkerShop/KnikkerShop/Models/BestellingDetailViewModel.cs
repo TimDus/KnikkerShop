@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KnikkerShop.Models.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace KnikkerShop.Models
     {
         public long Id { get; set; }
         public long KlantId { get; set; }
-        public List<int> ProductIds { get; set; }
+        public List<Product> ProductIds { get; set; }
         public int Aantal { get; set; }
         public DateTime Besteldatum { get; set; }
         public DateTime Leverdatum { get; set; }
