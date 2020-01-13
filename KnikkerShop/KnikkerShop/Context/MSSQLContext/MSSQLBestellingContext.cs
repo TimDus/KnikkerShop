@@ -33,12 +33,12 @@ namespace KnikkerShop.Context.MSSQLContext
         {
             try
             {
-                string sql = "INSERT INTO Bestelling(KlantId, BestelDatum, TotaalPrijs, Postcode, Huisnummer) OUTPUT Inserted.Id VALUES(@naam, @prijs, @grootte, @kleur, @beschrijving, 1,@categorieId, 1)";
+                string sql = "INSERT INTO Bestelling(KlantId, BestelDatum, LeverDatum, TotaalPrijs, Postcode, Huisnummer) OUTPUT Inserted.Id VALUES(@klantid, @besteldatum, @leverdatum, @totaalprijs, @postcode, @huisnummer)";
                  
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>("klantid", obj.KlantId.ToString()),
-                    new KeyValuePair<string, string>("besteldatum", obj.Besteldatum.ToString("yyyy-MM-dd")),
+                    new KeyValuePair<string, string>("besteldatum", DateTime.Now.ToString("yyyy-MM-dd")),
                     new KeyValuePair<string, string>("leverdatum", obj.Leverdatum.ToString("yyyy-MM-dd")),
                     new KeyValuePair<string, string>("totaalprijs", obj.Totaalprijs),
                     new KeyValuePair<string, string>("postcode", obj.Postcode),

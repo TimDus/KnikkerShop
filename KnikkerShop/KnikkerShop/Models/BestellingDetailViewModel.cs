@@ -10,7 +10,7 @@ namespace KnikkerShop.Models
     {
         public long Id { get; set; }
         public long KlantId { get; set; }
-        public List<Product> ProductIds { get; set; }
+        public List<Product> Products { get; set; }
         public int Aantal { get; set; }
         public DateTime Besteldatum { get; set; }
         public DateTime Leverdatum { get; set; }

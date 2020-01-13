@@ -44,3 +44,7 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Bestelling\Afrekenen.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Home\AccesDenied.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Bestelling\Inloggen.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\Account.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\Index.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\Woonplaats.g.cshtml.cs
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Gebruiker\BestelGeschiedenis.g.cshtml.cs

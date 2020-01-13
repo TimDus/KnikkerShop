@@ -21,7 +21,7 @@ namespace KnikkerShop.Converters
             {
                 Id = model.Id,
                 KlantId = model.KlantId,
-                ProductIds = model.ProductIds,
+                Products = model.Products,
                 Besteldatum = model.Besteldatum,
                 Leverdatum = model.Leverdatum,
                 Prijs = model.Prijs,

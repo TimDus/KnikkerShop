@@ -52,11 +52,6 @@ namespace KnikkerShop.Context.MSSQLContext
             }
         }
 
-        public bool AddStock(int Aantal)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Product> GetAll()
         {
             try
@@ -136,11 +131,6 @@ namespace KnikkerShop.Context.MSSQLContext
             }
         }
 
-        public bool RemoveStock(int Aantal)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Update(Product product)
         {
             try
@@ -166,6 +156,11 @@ namespace KnikkerShop.Context.MSSQLContext
             {
                 throw e;
             }   
+        }
+
+        public bool VeranderVoorraad(int Aantal)
+        {
+            throw new NotImplementedException();
         }
     }
 }

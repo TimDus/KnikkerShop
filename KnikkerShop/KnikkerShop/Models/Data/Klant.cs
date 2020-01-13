@@ -7,7 +7,6 @@ namespace KnikkerShop.Models.Data
 {
     public class Klant : BaseAccount
     {
-        string Postcode { get; set; }
-        string Huisnummer { get; set; }
+        public long KlantId { get; set; }
     }
 }

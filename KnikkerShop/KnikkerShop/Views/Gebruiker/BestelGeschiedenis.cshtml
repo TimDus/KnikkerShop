@@ -29,15 +29,13 @@
         }
     </table>
     <br>
-    <form asp-action="Index">
-        <div class="form-group">
-            <div class="col-xs-3">
-                <label for="Enddate">Leverdatum</label>
-                <input class="form-control" asp-for="Leverdatum" id="Leverpicker" min="@DateTime.Now.ToString(format:"yyyy/M/dd")" />
-                <span asp-validation-for="Leverdatum" class="text-danger"></span>
-            </div>
+    <div class="form-group">
+        <div class="col-xs-3">
+            <label for="Enddate"><h4>Leverdatum</h4></label>
+            <input type="date" class="form-control" asp-for="Leverdatum" placeholder="Einddatum behandeling" title="Einddatum behandeling">
+            <span asp-validation-for="Leverdatum" class="text-danger"></span>
         </div>
-        <input type="submit" value="Plaatsen" class="btn btn-default" />
-    </form>
+    </div>
+    <a asp-controller="Bestelling" asp-action="Plaatsen">Bestelling plaatsen</a>
 </body>
 </html>

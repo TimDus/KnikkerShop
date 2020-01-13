@@ -9,8 +9,6 @@ namespace KnikkerShop.Context.IContext
 {
     public interface IProductContext : IGenericQueries<Product>
     {
-        bool AddStock(int Aantal);
-
-        bool RemoveStock(int Aantal);
+        bool VeranderVoorraad(int Aantal);
     }
 }

@@ -76,9 +76,11 @@ namespace KnikkerShop.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                BaseAccount baseaccount = new BaseAccount(-1, model.Naam, model.Email);
-                baseaccount.Postcode = model.Postcode;
-                baseaccount.Huisnummer = model.Huisnummer;
+                BaseAccount baseaccount = new BaseAccount(-1, model.Naam, model.Email)
+                {
+                    Postcode = model.Postcode,
+                    Huisnummer = model.Huisnummer
+                };
                 var result = await _userManager.CreateAsync(baseaccount, model.Password);
                 if (result.Succeeded)
                 {
@@ -88,7 +90,7 @@ namespace KnikkerShop.Controllers
                 }
                 ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
             }
-            return View(model);
+            return RedirectToAction("Logout");
         }
 
         //[HttpPost]

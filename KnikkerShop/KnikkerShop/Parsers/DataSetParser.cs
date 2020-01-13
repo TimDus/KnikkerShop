@@ -36,6 +36,19 @@ namespace KnikkerShop.Parsers
             };
         }
 
+        public static Klant DataSetToKlant(DataSet set, int rowIndex)
+        {
+            return new Klant()
+            {
+                Id = (long)set.Tables[0].Rows[rowIndex][0],
+                UserName = (string)set.Tables[0].Rows[rowIndex][1],
+                Email = (string)set.Tables[0].Rows[rowIndex][2],
+                KlantId = (long)set.Tables[0].Rows[rowIndex][3],
+                Postcode = (string)set.Tables[0].Rows[rowIndex][4],
+                Huisnummer = (string)set.Tables[0].Rows[rowIndex][5],
+            };
+        }
+
         private static T TryParse<T>(object obj)
         {
             if (obj == null || obj == DBNull.Value)

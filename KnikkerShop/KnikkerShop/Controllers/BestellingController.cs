@@ -3,6 +3,7 @@ using KnikkerShop.Helper;
 using KnikkerShop.Models;
 using KnikkerShop.Models.Data;
 using KnikkerShop.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,9 @@ namespace KnikkerShop.Controllers
     public class BestellingController : BaseController
     {
         // Repos
-        private readonly ProductRepository  productRepository;
+        private readonly ProductRepository productRepository;
         private readonly BestellingRepository bestellingRepository;
+        private readonly KlantRepository klantRepository;
 
         // Converter 
         private readonly ProductViewModelConverter productconverter = new ProductViewModelConverter();
@@ -24,11 +26,13 @@ namespace KnikkerShop.Controllers
         public BestellingController
             (
                 ProductRepository productRepository,
-                BestellingRepository bestellingRepository
+                BestellingRepository bestellingRepository,
+                KlantRepository klantRepository
             )
         {
             this.productRepository = productRepository;
             this.bestellingRepository = bestellingRepository;
+            this.klantRepository = klantRepository;
         }
 
         public IActionResult Index()
@@ -41,11 +45,43 @@ namespace KnikkerShop.Controllers
                     cart.Producten.Add(p);
                 }
             }
-            catch       
+            catch
             {
                 return View();
             }
             return View(cart);
+        }
+
+        [Authorize(Roles = "Klant")]
+        [HttpPost]
+        public IActionResult Index(WinkelwagenViewModel vm)
+        {
+            decimal subtotaal = 0;
+            List<Product> cart = new List<Product>();
+            Bestelling bestelling = new Bestelling
+            {
+                KlantId = GetUserId()
+            };
+            foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
+            {
+                cart.Add(p);
+            }
+            bestelling.Products = cart;
+            foreach(Product p in bestelling.Products)
+            {
+                subtotaal += Convert.ToDecimal(p.Prijs);
+            }
+            bestelling.Totaalprijs = subtotaal.ToString();
+            Klant klant = klantRepository.GetById(bestelling.KlantId);
+            bestelling.Huisnummer = klant.Huisnummer;
+            bestelling.Postcode = klant.Postcode;
+            bestelling.Leverdatum = vm.Leverdatum;
+            long result = bestellingRepository.Insert(bestelling);
+            if (result != -1)
+            {
+                HttpContext.Session.Clear();
+            }
+            return RedirectToAction("Geplaatst", result);
         }
 
         public IActionResult Bestellen()
@@ -56,24 +92,6 @@ namespace KnikkerShop.Controllers
                 cart.Add(p);
             }
             return View(cart);
-        }
-
-        [HttpPost]
-        public IActionResult Plaatsen()
-        {
-            Bestelling bestelling = new Bestelling();
-            List<Product> cart = new List<Product>();
-            foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
-            {
-                cart.Add(p);
-            }
-            foreach(Product product in cart)
-            {
-                bestelling.ProductIds.Add(product);
-            }
-            bestellingRepository.Insert(bestelling);
-            HttpContext.Session.Clear();
-            return RedirectToAction("Geplaatst");
         }
     }
 

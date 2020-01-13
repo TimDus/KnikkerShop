@@ -1,14 +1,16 @@
 ﻿using KnikkerShop.Context.IContext;
 using KnikkerShop.Models.Data;
+using KnikkerShop.Parsers;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace KnikkerShop.Context.MSSQLContext
 {
-    public class MSSQLKlantContext : BaseMSSQLContext, ICategorieContext
+    public class MSSQLKlantContext : BaseMSSQLContext, IKlantContext
     {
         public MSSQLKlantContext(IConfiguration config) : base(config)
         {
@@ -19,22 +21,39 @@ namespace KnikkerShop.Context.MSSQLContext
             throw new NotImplementedException();
         }
 
-        public List<Categorie> GetAll()
+        public List<Klant> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Categorie GetById(long id)
+        public Klant GetById(long id)
         {
+            try
+            {
+                string sql = "SELECT A.Id, A.UserName, A.Email, K.Id, K.Postcode, K.Huisnummer FROM Account as A INNER JOIN Klant as K ON A.Id = K.AccountId WHERE A.Id = @Id";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("Id", id.ToString()),
+                };
+
+                DataSet results = ExecuteSql(sql, parameters);
+                Klant k = DataSetParser.DataSetToKlant(results, 0);
+                return k;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public long Insert(Klant obj)
+        {
+            //will never be implemented because of the usercontect which handles this function
             throw new NotImplementedException();
         }
 
-        public long Insert(Categorie obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(Categorie obj)
+        public bool Update(Klant obj)
         {
             throw new NotImplementedException();
         }
