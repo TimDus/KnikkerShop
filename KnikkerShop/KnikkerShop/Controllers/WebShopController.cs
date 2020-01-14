@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using KnikkerShop.Converters;
 using KnikkerShop.Helper;
 using KnikkerShop.Models;
-using KnikkerShop.Models.Data;
-using KnikkerShop.Repositories;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnikkerShop.Controllers
@@ -29,8 +29,10 @@ namespace KnikkerShop.Controllers
 
         public IActionResult Index()
         {
-            ProductViewModel vm = new ProductViewModel();
-            vm.ProductDetailViewModels = converter.ModelsToViewModels(productRepository.GetAll());
+            ProductViewModel vm = new ProductViewModel
+            {
+                ProductDetailViewModels = converter.ModelsToViewModels(productRepository.GetAll())
+            };
 
             return View(vm);
         }

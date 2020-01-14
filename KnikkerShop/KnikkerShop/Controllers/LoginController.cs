@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using KnikkerShop.Models.Data;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Data;
 using KnikkerShop.Models;
 using Microsoft.AspNetCore.Authentication;
 

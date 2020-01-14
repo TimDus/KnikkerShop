@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using KnikkerShop.Converters;
 using KnikkerShop.Models;
-using KnikkerShop.Models.Data;
-using KnikkerShop.Repositories;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnikkerShop.Controllers

@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.2": {
       "KnikkerShop/1.0.0": {
         "dependencies": {
+          "LibraryKnikker.Core": "1.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Authorization": "2.2.0",
           "Microsoft.AspNetCore.Identity": "2.2.0",
@@ -554,6 +555,14 @@
             "assemblyVersion": "4.0.3.0",
             "fileVersion": "4.6.26515.6"
           }
+        }
+      },
+      "LibraryKnikker.Core/1.0.0": {
+        "runtime": {
+          "LibraryKnikker.Core.dll": {}
+        },
+        "compile": {
+          "LibraryKnikker.Core.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3786,6 +3795,11 @@
       "sha512": "sha512-wLBKzFnDCxP12VL9ANydSYhk59fC4cvOr9ypYQLPnAj48NQIhqnjdD2yhP8yEKyBJEjERWS9DisKL7rX5eU25Q==",
       "path": "system.security.cryptography.protecteddata/4.5.0",
       "hashPath": "system.security.cryptography.protecteddata.4.5.0.nupkg.sha512"
+    },
+    "LibraryKnikker.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",
