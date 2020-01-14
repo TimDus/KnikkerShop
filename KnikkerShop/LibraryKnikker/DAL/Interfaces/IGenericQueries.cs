@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KnikkerShop.Interfaces
+namespace LibraryKnikker.Core.DAL.Interfaces
 {
     public interface IGenericQueries<T>
     {

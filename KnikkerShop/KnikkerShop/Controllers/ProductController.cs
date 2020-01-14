@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using KnikkerShop.Models;
 using Microsoft.AspNetCore.Authorization;
-using KnikkerShop.Models.Data;
 using KnikkerShop.Converters;
-using KnikkerShop.Repositories;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Data;
 
 namespace KnikkerShop.Controllers
 {

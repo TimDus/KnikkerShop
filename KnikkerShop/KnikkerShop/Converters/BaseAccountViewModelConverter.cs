@@ -1,6 +1,6 @@
 ﻿using KnikkerShop.Interfaces;
 using KnikkerShop.Models;
-using KnikkerShop.Models.Data;
+using LibraryKnikker.Core.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

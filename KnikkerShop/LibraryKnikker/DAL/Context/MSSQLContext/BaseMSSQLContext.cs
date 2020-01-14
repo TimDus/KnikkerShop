@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace KnikkerShop.Context.MSSQLContext
+namespace LibraryKnikker.Core.DAL.Context.MSSQLContext
 {
     public abstract class BaseMSSQLContext
     {

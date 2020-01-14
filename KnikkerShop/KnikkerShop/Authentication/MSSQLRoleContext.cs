@@ -1,4 +1,4 @@
-﻿using KnikkerShop.Models.Data;
+﻿using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;

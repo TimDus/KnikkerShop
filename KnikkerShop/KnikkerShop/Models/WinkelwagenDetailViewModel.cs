@@ -1,4 +1,4 @@
-﻿using KnikkerShop.Models.Data;
+﻿using LibraryKnikker.Core.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

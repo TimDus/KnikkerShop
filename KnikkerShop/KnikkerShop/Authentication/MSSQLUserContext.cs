@@ -1,5 +1,5 @@
-﻿using KnikkerShop.Context.MSSQLContext;
-using KnikkerShop.Models.Data;
+﻿using LibraryKnikker.Core.DAL.Context.MSSQLContext;
+using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

@@ -1,11 +1,11 @@
-﻿using KnikkerShop.Context.IContext;
-using KnikkerShop.Models.Data;
+﻿using LibraryKnikker.Core.DAL.Context.IContext;
+using LibraryKnikker.Core.DAL.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KnikkerShop.Repositories
+namespace LibraryKnikker.Core.BLL.Repositories
 {
     public class BestellingRepository
     {

@@ -1,16 +1,15 @@
-﻿using KnikkerShop.Context.IContext;
-using KnikkerShop.Interfaces;
-using KnikkerShop.Models.Data;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
-using KnikkerShop.Parsers;
+using LibraryKnikker.Core.DAL.Context.IContext;
+using LibraryKnikker.Core.DAL.Data;
+using LibraryKnikker.Core.DAL.Parsers;
 
-namespace KnikkerShop.Context.MSSQLContext
+namespace LibraryKnikker.Core.DAL.Context.MSSQLContext
 {
     public class MSSQLProductContext : BaseMSSQLContext, IProductContext
     {

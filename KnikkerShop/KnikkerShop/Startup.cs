@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using KnikkerShop.Context.Authentication;
-using KnikkerShop.Context.IContext;
-using KnikkerShop.Context.MemoryContext;
-using KnikkerShop.Context.MSSQLContext;
-using KnikkerShop.Models.Data;
-using KnikkerShop.Repositories;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Context.IContext;
+using LibraryKnikker.Core.DAL.Context.MSSQLContext;
+using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -57,7 +56,7 @@ namespace KnikkerShop
 
             //Useraccounts and roles
             services.AddTransient<IUserStore<BaseAccount>, MSSQLUserContext>();
-            services.AddTransient<IRoleStore<Role>, RoleMemoryContext>();
+            services.AddTransient<IRoleStore<Role>, MSSQLRoleContext>();
             services.AddIdentity<BaseAccount, Role>()
                 .AddDefaultTokenProviders();    
 

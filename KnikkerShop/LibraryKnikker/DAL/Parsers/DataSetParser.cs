@@ -1,11 +1,11 @@
-﻿using System;
+﻿using LibraryKnikker.Core.DAL.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using KnikkerShop.Models.Data;
 
-namespace KnikkerShop.Parsers
+namespace LibraryKnikker.Core.DAL.Parsers
 {
     public static class DataSetParser
     {

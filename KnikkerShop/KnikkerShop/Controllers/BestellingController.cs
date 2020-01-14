@@ -1,8 +1,8 @@
 ﻿using KnikkerShop.Converters;
 using KnikkerShop.Helper;
 using KnikkerShop.Models;
-using KnikkerShop.Models.Data;
-using KnikkerShop.Repositories;
+using LibraryKnikker.Core.BLL.Repositories;
+using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

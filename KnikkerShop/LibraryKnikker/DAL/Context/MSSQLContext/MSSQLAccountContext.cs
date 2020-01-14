@@ -1,14 +1,11 @@
-﻿using KnikkerShop.Context.IContext;
-using KnikkerShop.Models.Data;
-using KnikkerShop.Parsers;
+﻿using LibraryKnikker.Core.DAL.Context.IContext;
+using LibraryKnikker.Core.DAL.Data;
+using LibraryKnikker.Core.DAL.Parsers;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace KnikkerShop.Context.MSSQLContext
+namespace LibraryKnikker.Core.DAL.Context.MSSQLContext
 {
     public class MSSQLAccountContext : BaseMSSQLContext, IAccountContext
     {
