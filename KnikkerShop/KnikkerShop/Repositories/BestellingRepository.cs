@@ -30,6 +30,11 @@ namespace KnikkerShop.Repositories
             return context.GetAll();
         }
 
+        public List<Bestelling> GetAllFromUser(long id)
+        {
+            return context.GetAllFromUser(id);
+        }
+
         public bool Update(Bestelling obj)
         {
             return context.Update(obj);

@@ -12,7 +12,14 @@ namespace KnikkerShop.Converters
     {
         public List<BestellingDetailViewModel> ModelsToViewModels(List<Bestelling> models)
         {
-            throw new NotImplementedException();
+            List<BestellingDetailViewModel> result = new List<BestellingDetailViewModel>();
+
+            foreach (Bestelling b in models)
+            {
+                result.Add(ModelToViewModel(b));
+            }
+
+            return result;
         }
 
         public BestellingDetailViewModel ModelToViewModel(Bestelling model)
@@ -24,7 +31,7 @@ namespace KnikkerShop.Converters
                 Products = model.Products,
                 Besteldatum = model.Besteldatum,
                 Leverdatum = model.Leverdatum,
-                Prijs = model.Prijs,
+                Prijs = model.Totaalprijs,
                 Postcode = model.Postcode,
                 Huisnummer = model.Huisnummer,
                 Actief = model.Actief

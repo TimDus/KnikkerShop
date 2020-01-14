@@ -15,6 +15,5 @@ namespace KnikkerShop.Models.Data
         public string Huisnummer { get; set; }
         public  bool Actief { get; set; }
         public List<Product> Products { get; set; }
-        public string Prijs { get; set; }
     }
 }

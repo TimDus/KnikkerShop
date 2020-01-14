@@ -1,1 +1,66 @@
-﻿
+﻿<head>
+    @{
+        ViewData["Title"] = "Instellingen";
+    }
+    @model KnikkerShop.Models.BestellingViewModel
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="list-group ">
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-controller="Gebruiker" asp-action="Index">Overzicht</a>
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-controller="Gebruiker" asp-action="Account">Account</a>
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-controller="Gebruiker" asp-action="Woonplaats">Woonplaats</a>
+                    <a class="list-group-item list-group-item-action" asp-area="" asp-controller="Gebruiker" asp-action="Bestelgeschiedenis">Bestelgeschiedenis</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Bestel Geschiedenis</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @foreach (BestellingDetailViewModel vm in Model.bestellingDetailViewModels)
+                                {
+                                    <div class="form-group row">
+                                        <label class="col-4 col-form-label">Besteldatum</label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" value="@vm.Besteldatum.ToString("yyyy/M/dd")" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-4 col-form-label">Leverdatum</label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" value="@vm.Leverdatum.ToString("yyyy/M/dd")" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-4 col-form-label">Totaalprijs</label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" value="@vm.Prijs" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-8">
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

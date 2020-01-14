@@ -9,5 +9,6 @@ namespace KnikkerShop.Context.IContext
 {
     public interface IBestellingContext : IGenericQueries<Bestelling>
     {
+        List<Bestelling> GetAllFromUser(long Id);
     }
 }

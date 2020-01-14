@@ -49,6 +49,16 @@ namespace KnikkerShop.Parsers
             };
         }
 
+        public static Bestelling DataSetToBestelling(DataSet set, int rowIndex)
+        {
+            return new Bestelling()
+            {
+                Besteldatum = (DateTime)set.Tables[0].Rows[rowIndex][0],
+                Leverdatum = (DateTime)set.Tables[0].Rows[rowIndex][1],
+                Totaalprijs = (string)set.Tables[0].Rows[rowIndex][2],
+            };
+        }
+
         private static T TryParse<T>(object obj)
         {
             if (obj == null || obj == DBNull.Value)

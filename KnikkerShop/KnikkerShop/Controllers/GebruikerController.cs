@@ -75,7 +75,11 @@ namespace KnikkerShop.Controllers
         [HttpGet]
         public IActionResult BestelGeschiedenis()
         {
-            return View();
+            BestellingViewModel vm = new BestellingViewModel();
+            List<Bestelling> bestellingen = new List<Bestelling>();
+            bestellingen = bestellingRepository.GetAllFromUser(GetUserId());
+            vm.bestellingDetailViewModels = bestellingConverter.ModelsToViewModels(bestellingen);
+            return View(vm);
         }
     }
 }
