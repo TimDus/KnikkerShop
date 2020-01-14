@@ -4761,6 +4761,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "LibraryKnikker.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/LibraryKnikker.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LibraryKnikker.Core.dll": {}
+        }
       }
     }
   },
@@ -13142,10 +13152,16 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "LibraryKnikker.Core/1.0.0": {
+      "type": "project",
+      "path": "../LibraryKnikker/LibraryKnikker.Core.csproj",
+      "msbuildProject": "../LibraryKnikker/LibraryKnikker.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "LibraryKnikker.Core >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Authorization >= 2.2.0",
       "Microsoft.AspNetCore.Identity >= 2.2.0",
@@ -13185,7 +13201,11 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Mijn Documenten\\School\\KnikkerShop\\KnikkerShop\\LibraryKnikker\\LibraryKnikker.Core.csproj": {
+              "projectPath": "D:\\Mijn Documenten\\School\\KnikkerShop\\KnikkerShop\\LibraryKnikker\\LibraryKnikker.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
