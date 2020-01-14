@@ -80,18 +80,19 @@ namespace KnikkerShop.Controllers
             if (result != -1)
             {
                 HttpContext.Session.Clear();
+                return RedirectToAction("Geplaatst");
             }
-            return RedirectToAction("Geplaatst", result);
+            return RedirectToAction("Mislukt");
         }
 
-        public IActionResult Bestellen()
+        public IActionResult Geplaatst()
         {
-            List<Product> cart = new List<Product>();
-            foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
-            {
-                cart.Add(p);
-            }
-            return View(cart);
+            return View();
+        }
+
+        public IActionResult Mislukt()
+        {
+            return View();
         }
     }
 

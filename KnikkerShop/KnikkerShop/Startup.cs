@@ -46,12 +46,14 @@ namespace KnikkerShop
             services.AddScoped<ICategorieContext, MSSQLCategorieContext>();
             services.AddScoped<IBestellingContext, MSSQLBestellingContext>();
             services.AddScoped<IKlantContext, MSSQLKlantContext>();
+            services.AddScoped<IAccountContext, MSSQLAccountContext>();
 
             // Repositories
             services.AddScoped<ProductRepository>();
             services.AddScoped<CategorieRepository>();
             services.AddScoped<BestellingRepository>();
             services.AddScoped<KlantRepository>();
+            services.AddScoped<AccountRepository>();
 
             //Useraccounts and roles
             services.AddTransient<IUserStore<BaseAccount>, MSSQLUserContext>();

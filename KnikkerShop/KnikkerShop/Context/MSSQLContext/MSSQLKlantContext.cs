@@ -55,7 +55,39 @@ namespace KnikkerShop.Context.MSSQLContext
 
         public bool Update(Klant obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string sql = "UPDATE Klant set @fields where AccountId = @id";
+
+                string fields = "";
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("id", obj.Id.ToString())
+                };
+
+                if (obj.Postcode != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(fields))
+                        fields += ",";
+                    fields += "[Postcode] = @postcode";
+                    parameters.Add(new KeyValuePair<string, string>("postcode", obj.Postcode.ToString()));
+                }
+                if (obj.Huisnummer != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(fields))
+                        fields += ",";
+                    fields += "[Huisnummer] = @huisnummer";
+                    parameters.Add(new KeyValuePair<string, string>("huisnummer", obj.Huisnummer.ToString()));
+                }
+                sql = sql.Replace("@fields", fields);
+
+                ExecuteSql(sql, parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
