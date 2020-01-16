@@ -30,6 +30,7 @@ namespace LibraryKnikker.Core.DAL.Parsers
                 Id = (int)set.Tables[0].Rows[rowIndex][0],
                 Naam = (string)set.Tables[0].Rows[rowIndex][1],
                 Actief = (bool)set.Tables[0].Rows[rowIndex][2],
+                Aantal = (int)set.Tables[0].Rows[rowIndex][3],
             };
         }
 

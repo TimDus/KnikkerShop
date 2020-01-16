@@ -180,10 +180,10 @@ namespace KnikkerShop.Context.Authentication
             return Task.FromResult(user.NormalizedEmail);
         }
 
-        public Task<string> GetNormalizedUserNameAsync(BaseAccount user, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(user.NormalizedUserName);
-        }
+        //public Task<string> GetNormalizedUserNameAsync(BaseAccount user, CancellationToken cancellationToken)
+        //{
+        //    return Task.FromResult(user.NormalizedUserName);
+        //}
 
         public Task<string> GetPasswordHashAsync(BaseAccount user, CancellationToken cancellationToken)
         {
@@ -319,11 +319,11 @@ namespace KnikkerShop.Context.Authentication
             return Task.FromResult(0);
         }
 
-        public Task SetNormalizedAccountNameAsync(BaseAccount user, string normalizedName, CancellationToken cancellationToken)
-        {
-            user.NormalizedUserName = normalizedName;
-            return Task.FromResult(0);
-        }
+        //public Task SetNormalizedAccountNameAsync(BaseAccount user, string normalizedName, CancellationToken cancellationToken)
+        //{
+        //    user.NormalizedUserName = normalizedName;
+        //    return Task.FromResult(0);
+        //}
 
         public Task SetPasswordHashAsync(BaseAccount user, string passwordHash, CancellationToken cancellationToken)
         {
@@ -357,10 +357,20 @@ namespace KnikkerShop.Context.Authentication
             throw new NotImplementedException();
         }
 
+        public Task<string> GetNormalizedUserNameAsync(BaseAccount user, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task SetNormalizedUserNameAsync(BaseAccount user, string normalizedName, CancellationToken cancellationToken)
         {
-            user.NormalizedUserName = normalizedName;
-            return Task.FromResult(0);
+            throw new NotImplementedException();
         }
+
+        //public Task SetNormalizedUserNameAsync(BaseAccount user, string normalizedName, CancellationToken cancellationToken)
+        //{
+        //    user.NormalizedUserName = normalizedName;
+        //    return Task.FromResult(0);
+        //}
     }
 }

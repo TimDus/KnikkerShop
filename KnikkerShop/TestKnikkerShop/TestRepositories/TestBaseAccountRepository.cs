@@ -8,7 +8,7 @@ namespace TestKnikkerShop.TestRepositories
 {
     public class TestBaseAccountRepository : ClearLists
     {
-        IAccountContext context = new TestAccountContext();
+        readonly IAccountContext context = new TestAccountContext();
         AccountRepository accountRepository;
 
         [Fact]

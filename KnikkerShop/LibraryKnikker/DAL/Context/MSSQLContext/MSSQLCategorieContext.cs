@@ -95,7 +95,7 @@ namespace LibraryKnikker.Core.DAL.Context.MSSQLContext
         {
             try
             {
-                string sql = "SELECT Id, Naam, Actief From Categorie";
+                string sql = "SELECT C.Id, C.Naam, C.Actief, Count(P.Naam) as Aantal From Categorie as C INNER JOIN Product as P ON C.Id = P.CategorieId GROUP BY C.Id, C.Naam, C.Actief";
                 List<Categorie> categorien = new List<Categorie>();
 
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>

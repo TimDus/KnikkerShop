@@ -25,7 +25,8 @@ namespace KnikkerShop.Converters
             {
                 Id = model.Id,
                 Naam = model.Naam,
-                Actief = model.Actief
+                Actief = model.Actief,
+                Aantal = model.Aantal
             };
 
             return vm;
@@ -37,7 +38,8 @@ namespace KnikkerShop.Converters
             {
                 Naam = viewModel.Naam,
                 Id = viewModel.Id,
-                Actief = viewModel.Actief
+                Actief = viewModel.Actief,
+                Aantal = viewModel.Aantal
             };
 
             return c;

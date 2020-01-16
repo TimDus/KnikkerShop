@@ -4,5 +4,6 @@
     { 
         public string Naam { get; set; }
         public bool Actief { get; set; }
+        public int Aantal { get; set; }
     }
 }

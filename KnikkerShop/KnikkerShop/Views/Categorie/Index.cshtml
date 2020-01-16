@@ -26,6 +26,7 @@
         <thead>
             <tr>
                 <th>Naam</th>
+                <th>Aantal</th>
                 <th>Acties</th>
             </tr>
         </thead>
@@ -34,6 +35,7 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Naam)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Aantal)</td>
                     <td>
                         @Html.ActionLink("Aanpassen", "Aanpassen", new { id = item.Id }) |
                         @if (item.Actief == false)
