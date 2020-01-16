@@ -40,10 +40,6 @@ namespace KnikkerShop.Context.Authentication
                                "@Huisnummer = @huisnummer, " +
                                "@Postcode = @postcode";
 
-                SqlCommand sqlCommand = new SqlCommand(query, connection);
-                sqlCommand.Parameters.AddWithValue("@username", user.UserName);
-                sqlCommand.Parameters.AddWithValue("@password", user.Password);
-                sqlCommand.Parameters.AddWithValue("@email", user.Email);
                 List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
                 {
                     new KeyValuePair<string, string>("username", user.UserName),

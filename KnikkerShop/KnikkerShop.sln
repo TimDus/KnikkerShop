@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnikkerShop", "KnikkerShop\KnikkerShop.csproj", "{A6812B27-BE40-466F-8788-45E876A92D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryKnikker.Core", "LibraryKnikker\LibraryKnikker.Core.csproj", "{E3812A20-9C7A-41D1-AB5A-251B9D7715C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryKnikker.Core", "LibraryKnikker\LibraryKnikker.Core.csproj", "{E3812A20-9C7A-41D1-AB5A-251B9D7715C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestKnikkerShop", "TestKnikkerShop\TestKnikkerShop.csproj", "{49688011-D7A0-45C1-9AD1-01DB0DB323A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E3812A20-9C7A-41D1-AB5A-251B9D7715C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3812A20-9C7A-41D1-AB5A-251B9D7715C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3812A20-9C7A-41D1-AB5A-251B9D7715C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49688011-D7A0-45C1-9AD1-01DB0DB323A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49688011-D7A0-45C1-9AD1-01DB0DB323A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49688011-D7A0-45C1-9AD1-01DB0DB323A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49688011-D7A0-45C1-9AD1-01DB0DB323A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

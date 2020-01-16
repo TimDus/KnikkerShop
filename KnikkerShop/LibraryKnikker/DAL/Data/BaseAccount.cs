@@ -13,14 +13,11 @@
         public string Postcode { get; set; }
         public string Huisnummer { get; set; }
 
-        public string NormalizedUserName { get { return UserName.ToUpper(); } set { UserName = value.ToUpper(); } }
-
         public BaseAccount(long id, string userName, string email)
         {
             Id = id;
             UserName = userName;
             Email = email;
-            NormalizedUserName = userName.ToUpper();
             NormalizedEmail = email.ToUpper();
         }
 
@@ -31,10 +28,6 @@
             Email = email;
             Password = password;
             RoleId = roleid;
-            if (userName != null)
-            {
-                NormalizedUserName = userName.ToUpper();
-            }
             NormalizedEmail = email.ToUpper();
         }
 

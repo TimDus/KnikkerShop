@@ -13,8 +13,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DAL\Context\MemoryContext\" />
-  </ItemGroup>
-
 </Project>
