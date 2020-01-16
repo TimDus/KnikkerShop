@@ -54,26 +54,11 @@ namespace KnikkerShop.Controllers
         [HttpPost]
         public IActionResult Index(WinkelwagenViewModel vm)
         {
-            decimal subtotaal = 0;
-            List<Product> cart = new List<Product>();
             Bestelling bestelling = new Bestelling
             {
                 KlantId = GetUserId()
             };
-            foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
-            {
-                cart.Add(p);
-            }
-            bestelling.Products = cart;
-            foreach(Product p in bestelling.Products)
-            {
-                subtotaal += Convert.ToDecimal(p.Prijs);
-            }
-            bestelling.Totaalprijs = subtotaal.ToString();
-            Klant klant = klantRepository.GetById(bestelling.KlantId);
-            bestelling.Huisnummer = klant.Huisnummer;
-            bestelling.Postcode = klant.Postcode;
-            bestelling.Leverdatum = vm.Leverdatum;
+            bestelling = ConstructBestelling(bestelling);
             long result = bestellingRepository.Insert(bestelling);
             if (result != -1)
             {
@@ -92,6 +77,31 @@ namespace KnikkerShop.Controllers
         {
             return View();
         }
-    }
 
+        public Bestelling ConstructBestelling(Bestelling bestelling)
+        {
+            Klant klant = klantRepository.GetById(bestelling.KlantId);
+            //Product lijst
+            List<Product> cart = new List<Product>();
+            foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
+            {
+                cart.Add(p);
+            }
+            bestelling.Products = cart;
+
+            //Prijs gedeelte
+            decimal subtotaal = 0;
+            foreach (Product p in bestelling.Products)
+            {
+                subtotaal = subtotaal + Convert.ToDecimal(p.Prijs);
+            }
+            bestelling.Totaalprijs = subtotaal.ToString();
+
+            //Klant Data
+            bestelling.Huisnummer = klant.Huisnummer;
+            bestelling.Postcode = klant.Postcode;
+
+            return bestelling;
+        }
+    }
 }

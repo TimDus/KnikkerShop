@@ -46,30 +46,11 @@ namespace KnikkerShop.Controllers
 
             if (SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart") == null)
             {
-                List<Product> cart = new List<Product>();
-                Product p = productRepository.GetById(id);
-                p.Aantal = 1;
-                cart.Add(p);
-
-                SetSession(cart);
+                EersteItem(id);
             }
             else
             {
-                List<Product> cart = SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart");
-                int index = BestaatWagen(cart, id);
-                if (index != -1)
-                {
-                    cart[index].Aantal++;
-                    SetSession(cart);
-                }
-                else
-                {
-                    Product p = productRepository.GetById(id);
-                    p.Aantal = 1;
-                    cart.Add(p);
-                    SetSession(cart);
-                }
-
+                MeerdereItems(id);
             }
             return RedirectToAction("Index");
         }
@@ -120,6 +101,34 @@ namespace KnikkerShop.Controllers
         {
             List<Product> cart = SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart");
             return cart;
+        }
+
+        private void EersteItem(long id)
+        {
+            List<Product> cart = new List<Product>();
+            Product p = productRepository.GetById(id);
+            p.Aantal = 1;
+            cart.Add(p);
+
+            SetSession(cart);
+        }
+
+        private void MeerdereItems(long id)
+        {
+            List<Product> cart = SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart");
+            int index = BestaatWagen(cart, id);
+            if (index != -1)
+            {
+                cart[index].Aantal++;
+                SetSession(cart);
+            }
+            else
+            {
+                Product p = productRepository.GetById(id);
+                p.Aantal = 1;
+                cart.Add(p);
+                SetSession(cart);
+            }
         }
     }
 }
