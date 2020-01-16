@@ -1,6 +1,5 @@
 ﻿using LibraryKnikker.Core.DAL.Context.IContext;
 using LibraryKnikker.Core.DAL.Data;
-using LibraryKnikker.Core.DAL.Parsers;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

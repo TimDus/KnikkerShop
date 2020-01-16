@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using LibraryKnikker.Core.BLL.Repositories;
 using LibraryKnikker.Core.DAL.Data;
 using KnikkerShop.Models;
 using Microsoft.AspNetCore.Authentication;

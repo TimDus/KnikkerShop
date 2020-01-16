@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KnikkerShop.Converters;
-using KnikkerShop.Helper;
+﻿using KnikkerShop.Converters;
 using KnikkerShop.Models;
 using LibraryKnikker.Core.BLL.Repositories;
 using LibraryKnikker.Core.DAL.Data;

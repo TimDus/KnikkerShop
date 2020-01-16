@@ -1,12 +1,10 @@
 ﻿using LibraryKnikker.Core.DAL.Context.MSSQLContext;
 using LibraryKnikker.Core.DAL.Data;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

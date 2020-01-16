@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Drawing;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data;
 using LibraryKnikker.Core.DAL.Context.IContext;
 using LibraryKnikker.Core.DAL.Data;
