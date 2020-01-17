@@ -51,3 +51,4 @@ D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcorea
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Bestelling\Mislukt.g.cshtml.cs
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcoreapp2.2\LibraryKnikker.Core.dll
 D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\bin\Debug\netcoreapp2.2\LibraryKnikker.Core.pdb
+D:\Mijn Documenten\School\KnikkerShop\KnikkerShop\KnikkerShop\obj\Debug\netcoreapp2.2\Razor\Views\Product\Resultaat.g.cshtml.cs

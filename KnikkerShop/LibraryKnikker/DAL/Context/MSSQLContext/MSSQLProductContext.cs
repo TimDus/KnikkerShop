@@ -158,5 +158,32 @@ namespace LibraryKnikker.Core.DAL.Context.MSSQLContext
         {
             throw new NotImplementedException();
         }
+
+        public List<Product> Zoeken(string Zoekterm)
+        {
+            List<Product> productList = new List<Product>();
+            try
+            {
+                string sql = "SELECT P.Id, P.Naam, P.Prijs, P.Grootte, P.Kleur, P.Beschrijving, P.Voorraad, C.Naam, P.CategorieId, P.Actief FROM Product as P INNER JOIN Categorie as C ON P.CategorieId = C.Id WHERE CHARINDEX(@zoekterm, P.Naam) > 0 ORDER BY P.Naam";
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("zoekterm", Zoekterm),
+                };
+
+                DataSet results = ExecuteSql(sql, parameters);
+
+                for (int x = 0; x < results.Tables[0].Rows.Count; x++)
+                {
+                    Product p = DataSetParser.DataSetToProduct(results, x);
+                    productList.Add(p);
+                }
+                return productList;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

@@ -5,7 +5,10 @@
 }
 
 <h2>WebShop</h2>
-
+<form asp-controller="Product" asp-action="Zoeken" class="form-inline my-2 my-lg-0" style="margin-left:20px">
+    <input asp-for="Zoekterm" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <div class="container">
     <div class="row">
         @foreach (ProductDetailViewModel item in Model.ProductDetailViewModels)

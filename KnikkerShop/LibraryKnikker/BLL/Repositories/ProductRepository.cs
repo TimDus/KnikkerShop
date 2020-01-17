@@ -42,5 +42,10 @@ namespace LibraryKnikker.Core.BLL.Repositories
         {
             return context.Activation(id, active);
         }
+
+        public List<Product> Zoeken(string zoekterm)
+        {
+            return context.Zoeken(zoekterm);
+        }
     }
 }

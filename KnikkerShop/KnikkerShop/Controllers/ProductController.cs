@@ -102,5 +102,27 @@ namespace KnikkerShop.Controllers
             bool result = productRepository.Update(product);
             return RedirectToAction("Index");
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Zoeken(string zoekterm)
+        {
+            return RedirectToAction("Resultaat", new { zoekterm });
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Resultaat(string zoekterm)
+        {
+            ProductViewModel vm = new ProductViewModel();
+            if (zoekterm == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<Product> products = new List<Product>();
+            products = productRepository.Zoeken(zoekterm);
+            vm.ProductDetailViewModels = productConverter.ModelsToViewModels(products);
+            return View(vm);
+        }
     }
 }
