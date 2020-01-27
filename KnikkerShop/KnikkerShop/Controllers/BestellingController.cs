@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 namespace KnikkerShop.Controllers
 {
+    [Authorize(Roles = "Klant")]
     public class BestellingController : BaseController
     {
         // Repos
@@ -33,6 +34,7 @@ namespace KnikkerShop.Controllers
             this.klantRepository = klantRepository;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             WinkelwagenViewModel cart = new WinkelwagenViewModel();

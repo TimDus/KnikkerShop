@@ -5,24 +5,28 @@
 }
 
 <h2>Resultaten</h2>
+<form asp-controller="Product" asp-action="Zoeken" class="form-inline my-2 my-lg-0" style="margin-left:20px">
+    <input asp-for="Zoekterm" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <div class="container">
     <div class="row">
         @foreach (ProductDetailViewModel item in Model.ProductDetailViewModels)
         {
             if (item.Actief == true)
             {
-        <div class="col-md-4 col-sm-6">
-            <a href='@Url.Action("Detail", "WebShop", new { id = item.Id })' />
-            <span class="thumbnail" />
-            <img src="http://placehold.it/500x400" alt="KnikkerPlaatje">
-            <h4>@item.Naam</h4>
-            <p>@item.Beschrijving</p>
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <p class="price">$@item.Prijs</p>
+                <div class="col-md-4 col-sm-6">
+                    <a href='@Url.Action("Detail", "WebShop", new { id = item.Id })' />
+                    <span class="thumbnail" />
+                    <img src="http://placehold.it/500x400" alt="KnikkerPlaatje">
+                    <h4>@item.Naam</h4>
+                    <p>@item.Beschrijving</p>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <p class="price">$@item.Prijs</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             }
         }
     </div>

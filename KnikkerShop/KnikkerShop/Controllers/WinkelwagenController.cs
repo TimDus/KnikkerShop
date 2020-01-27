@@ -4,6 +4,7 @@ using KnikkerShop.Models;
 using LibraryKnikker.Core.BLL.Repositories;
 using LibraryKnikker.Core.DAL.Data;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace KnikkerShop.Controllers
@@ -32,6 +33,7 @@ namespace KnikkerShop.Controllers
                 foreach (Product p in SessionHelper.GetObjectFromJson<List<Product>>(HttpContext.Session, "cart"))
                 {
                     cart.Producten.Add(p);
+                    cart.TotaalPrijs = cart.TotaalPrijs + Convert.ToDecimal(Convert.ToDecimal(p.Prijs) * p.Aantal);
                 }
             }
             catch

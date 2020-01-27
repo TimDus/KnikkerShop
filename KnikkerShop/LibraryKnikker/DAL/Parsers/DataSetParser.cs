@@ -56,17 +56,5 @@ namespace LibraryKnikker.Core.DAL.Parsers
                 Totaalprijs = (string)set.Tables[0].Rows[rowIndex][2],
             };
         }
-
-        private static T TryParse<T>(object obj)
-        {
-            if (obj == null || obj == DBNull.Value)
-            {
-                return default(T); // returns the default value for the type
-            }
-            else
-            {
-                return (T)obj;
-            }
-        }
     }
 }

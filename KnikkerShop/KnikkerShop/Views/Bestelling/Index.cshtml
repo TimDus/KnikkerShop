@@ -37,7 +37,14 @@
                 <span asp-validation-for="Leverdatum" class="text-danger"></span>
             </div>
         </div>
-        <input type="submit" value="Plaatsen" class="btn btn-default" />
+        @if (User.IsInRole("Klant"))
+        {
+            <input type="submit" value="Plaatsen" class="btn btn-default" />
+        }
+        else
+        {
+            <label>Je moet ingelogd zijn als klant om te kunnen bestellen</label>
+        }
     </form>
 </body>
 </html>

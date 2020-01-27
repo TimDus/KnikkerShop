@@ -38,17 +38,17 @@
             <div class="form-group">
                 <label>Categorie</label>
                 <select asp-for="CategorieId" class="form-control">
-                    @for (int i = 1; i < Model.CategorieList.Count() + 1; i++)
+                    @for (int i = 0; i < Model.CategorieList.Count(); i++)
                     {
-                        if (i == Model.CategorieId)
+                        if (i == Model.CategorieList[i].Id)
                         {
-                            <option selected value="@i">@Model.CategorieList[i - 1].Naam</option>
+                            <option selected value="@Model.CategorieList[i].Id">@Model.CategorieList[i].Naam</option>
                         }
                         else
                         {
-                            @if (Model.CategorieList[i-1].Actief == true)
+                            @if (Model.CategorieList[i].Actief == true)
                             {
-                                <option value="@i">@Model.CategorieList[i-1].Naam</option>
+                                <option value="@Model.CategorieList[i].Id">@Model.CategorieList[i].Naam</option>
                             }
                         }
                     }

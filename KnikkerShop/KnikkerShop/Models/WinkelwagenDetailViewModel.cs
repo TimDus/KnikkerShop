@@ -7,7 +7,7 @@ namespace KnikkerShop.Models
 {
     public class WinkelwagenViewModel
     {
-        public int TotalPrijs { get; set; }
+        public decimal TotaalPrijs { get; set; }
         public List<Product> Producten = new List<Product>();
         public BaseAccount BaseAccount = new BaseAccount();
 

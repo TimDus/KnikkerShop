@@ -84,11 +84,12 @@ namespace KnikkerShop.Controllers
                 {
 
                     await _signInManager.SignInAsync(baseaccount, isPersistent: false);
-                    return RedirectToAction(returnUrl);
+                    await _signInManager.SignOutAsync();
+                    return RedirectToAction("Aangemaakt", "Login");
                 }
                 ModelState.AddModelError(string.Empty, result.Errors.FirstOrDefault().Description);
             }
-            return RedirectToAction("Logout");
+            return RedirectToAction("Mislukt", "Login");
         }
 
         //[HttpPost]
@@ -100,7 +101,12 @@ namespace KnikkerShop.Controllers
         }
 
         //AccessDenied
-        public IActionResult AccessDenied()
+        public IActionResult Aangemaakt()
+        {
+            return View();
+        }
+
+        public IActionResult Mislukt()
         {
             return View();
         }
